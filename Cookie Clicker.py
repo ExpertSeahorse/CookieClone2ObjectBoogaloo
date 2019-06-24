@@ -18,7 +18,8 @@ class GameWindow:
         self.frame_cookie.pack(side=tk.TOP, fill=tk.X)
 
         self.image = tk.PhotoImage(file="Cookie.png")
-        self.cookie = tk.Button(self.frame_cookie, compound=tk.TOP, width=256, height=256, image=self.image, command=self.ck_click)
+        self.cookie = tk.Button(self.frame_cookie, compound=tk.TOP, width=256, height=256,
+                                image=self.image, command=self.ck_click)
         self.cookie.pack(padx=2, pady=2)
         self.cookie.image = self.image
 
@@ -46,7 +47,6 @@ class GameWindow:
 
         self.label_list = []
         self.price_list = []
-        i = 0
         shop_list = []
         index = 1
         for key in PLAYER.inventory:
@@ -65,7 +65,8 @@ class GameWindow:
         r = 2
         for key, label, func, butname, prcname in shop_list:
             # makes price labels
-            self.prcname = tk.Label(self.frame_shop, width=20, text='$' + str(self.disp_num(PLAYER.inventory[key][2])))
+            self.prcname = tk.Label(self.frame_shop, width=20,
+                                    text='$' + str(GameWindow.disp_num(PLAYER.inventory[key][2])))
             self.prcname.grid(row=r)
             self.price_list.append(self.prcname)
             # makes purchase buttons
@@ -79,7 +80,7 @@ class GameWindow:
 
     def ck_click(self):
         PLAYER.balance += 1
-        self.bal_show.config(text="Balance: " + str(self.disp_num(round(PLAYER.balance))))
+        self.bal_show.config(text="Balance: " + str(GameWindow.disp_num(round(PLAYER.balance))))
 
     def buy(self, choice):
         index = 1
@@ -90,21 +91,23 @@ class GameWindow:
                     PLAYER.inventory[key][0] += 1
                     PLAYER.inventory[key][2] *= 1.15
 
-                    self.bal_show.config(text="Balance: " + str(self.disp_num(round(PLAYER.balance))))
-                    self.label_list[choice - 1].config(text=self.disp_num(PLAYER.inventory[key][0]))
-                    self.price_list[choice - 1].config(text='$' + str(self.disp_num(round(PLAYER.inventory[key][2]))))
+                    self.bal_show.config(text="Balance: " + str(GameWindow.disp_num(round(PLAYER.balance))))
+                    self.label_list[choice - 1].config(text=GameWindow.disp_num(PLAYER.inventory[key][0]))
+                    self.price_list[choice - 1].config(text='$' +
+                                                            str(GameWindow.disp_num(round(PLAYER.inventory[key][2]))))
                     PLAYER.cps_update()
-                    self.cps_show.config(text="Clicks per Second (cps): " + str(self.disp_num(PLAYER.cps)))
+                    self.cps_show.config(text="Clicks per Second (cps): " + str(GameWindow.disp_num(PLAYER.cps)))
                     break
             index += 1
 
     def game_tick(self):
         PLAYER.cps_update()
         PLAYER.balance += PLAYER.cps
-        self.bal_show.config(text="Balance: " + str(self.disp_num(round(PLAYER.balance))))
+        self.bal_show.config(text="Balance: " + str(GameWindow.disp_num(round(PLAYER.balance))))
         self.bal_show.after(1000, self.game_tick)
 
-    def disp_num(self, num):
+    @staticmethod
+    def disp_num(num):
         if 1 <= num / (1*10**6) < 1000:
             return str(round(num/(1*10**6), 2)) + " million"
 
@@ -112,10 +115,10 @@ class GameWindow:
             return str(round(num/(1*10**9), 2)) + " billion"
 
         elif 1 <= num / (1*10**12) < 1000:
-            return str(round(num/(1*10**12),2)) + " trillion"
+            return str(round(num/(1*10**12), 2)) + " trillion"
 
         elif 1 <= num / (1*10**15) < 1000:
-            return str(round(num/(1*10**15))) + " quadrillion"
+            return str(round(num/(1*10**15), 2)) + " quadrillion"
 
         else:
             return num
