@@ -58,14 +58,14 @@ class GameWindow:
             label = key.lower().capitalize()
 
             # makes price labels
-            self.prcname = tk.Label(self.frame_shop, width=20,
-                                    text='$' + str(GameWindow.disp_num(PLAYER.inventory[key][2])))
-            self.prcname.grid(row=r)
-            self.price_list.append(self.prcname)
+            self.price_name = tk.Label(self.frame_shop, width=20,
+                                       text='$' + str(GameWindow.display_num(PLAYER.inventory[key][2])))
+            self.price_name.grid(row=r)
+            self.price_list.append(self.price_name)
 
             # makes purchase buttons
-            self.butname = tk.Button(self.frame_shop, text=label, width=20, command=lambda j=index: self.buy(j))
-            self.butname.grid(row=r, column=1)
+            self.but_name = tk.Button(self.frame_shop, text=label, width=20, command=lambda j=index: self.buy(j))
+            self.but_name.grid(row=r, column=1)
 
             # makes count labels
             self.key = tk.Label(self.frame_shop, width=20, text=str(PLAYER.inventory[key][0]))
@@ -80,7 +80,7 @@ class GameWindow:
         :return:
         """
         PLAYER.balance += 1
-        self.bal_show.config(text="Balance: " + str(GameWindow.disp_num(round(PLAYER.balance))))
+        self.bal_show.config(text="Balance: " + str(GameWindow.display_num(round(PLAYER.balance))))
 
     def buy(self, choice):
         """
@@ -103,15 +103,15 @@ class GameWindow:
                     PLAYER.inventory[key][2] *= 1.15
 
                     # Update their balance
-                    self.bal_show.config(text="Balance: " + str(GameWindow.disp_num(round(PLAYER.balance))))
+                    self.bal_show.config(text="Balance: " + str(GameWindow.display_num(round(PLAYER.balance))))
                     # Update the building's count list
-                    self.count_list[choice - 1].config(text=GameWindow.disp_num(PLAYER.inventory[key][0]))
+                    self.count_list[choice - 1].config(text=GameWindow.display_num(PLAYER.inventory[key][0]))
                     # Update the building's price list
                     self.price_list[choice - 1].config(text='$' +
-                                                            str(GameWindow.disp_num(round(PLAYER.inventory[key][2]))))
+                                                       str(GameWindow.display_num(round(PLAYER.inventory[key][2]))))
                     # Recalculate and update the cps
                     PLAYER.cps_update()
-                    self.cps_show.config(text="Clicks per Second (cps): " + str(GameWindow.disp_num(PLAYER.cps)))
+                    self.cps_show.config(text="Clicks per Second (cps): " + str(GameWindow.display_num(PLAYER.cps)))
                     break
             index += 1
 
@@ -125,12 +125,12 @@ class GameWindow:
         # Add the cps to the player's balance
         PLAYER.balance += PLAYER.cps
         # Update the balance
-        self.bal_show.config(text="Balance: " + str(GameWindow.disp_num(round(PLAYER.balance))))
+        self.bal_show.config(text="Balance: " + str(GameWindow.display_num(round(PLAYER.balance))))
         # Repeat after 1000ms
         self.bal_show.after(1000, self.game_tick)
 
     @staticmethod
-    def disp_num(num):
+    def display_num(num):
         """
         Formats the numbers to include numbers after 1,000,000
         :param num:
@@ -170,7 +170,7 @@ class Player:
                           'time machine': [0, 6.5*10**7, 1.4*10**13],
                           'anti-matter condenser': [0, 4.3*10**8, 1.7*10**14],
                           'prism': [0, 2.9*10**9, 2.1*10**15],
-                          'chancemaker': [0, 2.1*10**10, 2.6*10**16],
+                          'chance maker': [0, 2.1*10**10, 2.6*10**16],
                           'fractal engine': [0, 1.5*10**11, 3.1*10**17]}
         #                 'key_name': ['count', 'cps', 'price']
         self.cps = 0
