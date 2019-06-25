@@ -1,7 +1,4 @@
 import tkinter as tk
-import string as st
-import random as rand
-# TODO: Consolidate shop list loop and element loop
 # TODO: Add "buy 10x & 100x"
 # TODO: Add upgrades
 # TODO: Add Mouse over menu for each building's: cps, %of total, total cookies so far
@@ -47,36 +44,27 @@ class GameWindow:
 
         self.label_list = []
         self.price_list = []
-        shop_list = []
         index = 1
+        r = 2
         for key in PLAYER.inventory:
             label = key.lower().capitalize()
-            butname = rand.choice(st.ascii_lowercase)
-            prcname = rand.choice(st.ascii_lowercase)*2
-            shop_list.append((key, label, lambda index=index: self.buy(index), butname, prcname))
-            index += 1
 
-        """shop_list = [(PLAYER.inventory[i], "Auto Clicker", lambda: self.buy(1), 'a', 'aa'),
-                     (PLAYER.inventory[i], "Granny", lambda: self.buy(2), 'b', 'ab'),
-                     (PLAYER.inventory[i], "Farm", lambda: self.buy(3), 'c', 'ac'),
-                     (PLAYER.inventory[i], "Mine", lambda: self.buy(4), 'd', 'ad'),
-                     (PLAYER.inventory[i], "Factory", lambda: self.buy(5), 'e', 'ae'),
-                     (PLAYER.inventory[i], "Bank", lambda: self.buy(6), 'f', 'af')]"""
-        r = 2
-        for key, label, func, butname, prcname in shop_list:
             # makes price labels
             self.prcname = tk.Label(self.frame_shop, width=20,
                                     text='$' + str(GameWindow.disp_num(PLAYER.inventory[key][2])))
             self.prcname.grid(row=r)
             self.price_list.append(self.prcname)
+
             # makes purchase buttons
-            self.butname = tk.Button(self.frame_shop, text=label, width=20, command=func)
+            self.butname = tk.Button(self.frame_shop, text=label, width=20, command=lambda j=index: self.buy(j))
             self.butname.grid(row=r, column=1)
+
             # makes count labels
             self.key = tk.Label(self.frame_shop, width=20, text=str(PLAYER.inventory[key][0]))
             self.key.grid(row=r, column=2)
             self.label_list.append(self.key)
             r += 1
+            index += 1
 
     def ck_click(self):
         PLAYER.balance += 1
