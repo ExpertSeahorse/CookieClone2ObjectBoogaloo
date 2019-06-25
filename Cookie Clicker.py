@@ -4,6 +4,7 @@ import tkinter as tk
 # TODO: Add Mouse over menu for each building's: cps, %of total, total cookies so far
 # TODO: Add Stats rollover page
 # TODO: Game auto-saves (JSON)
+# TODO: Using auto-save, calculate cookies earned in down time
 
 
 class GameWindow:
@@ -11,38 +12,45 @@ class GameWindow:
         self.master = root
         self.master.title("Cookie Clicker")
 
+        # COOKIE FRAME
         self.frame_cookie = tk.Frame(master)
         self.frame_cookie.pack(side=tk.TOP, fill=tk.X)
 
+        # Creates cookie button
         self.image = tk.PhotoImage(file="Cookie.png")
         self.cookie = tk.Button(self.frame_cookie, compound=tk.TOP, width=256, height=256,
                                 image=self.image, command=self.ck_click)
         self.cookie.pack(padx=2, pady=2)
         self.cookie.image = self.image
 
+        # Creates balance number
         self.bal_show = tk.Label(master, text="Balance: " + str(PLAYER.balance))
         self.bal_show.pack()
 
+        # Runs the game tick if the player has purchased a building # May remove this for accurate run time
         if PLAYER.inventory:
             self.game_tick()
-
+        # Creates cps number
         self.cps_show = tk.Label(master, text="Clicks per Second (cps): " + str(PLAYER.cps))
         self.cps_show.pack()
+########################################################################################################################
 
+        # SHOP FRAME
         self.frame_shop = tk.Frame(master)
         self.frame_shop.pack(side=tk.TOP, fill=tk.X)
 
+        # Creates shop grid
         self.label = tk.Label(self.frame_shop, text="#################Shop#################")
         self.label.grid(columnspan=3)
 
-        self.price = tk.Label(self.frame_shop, text="Price")
-        self.price.grid(row=1, column=0)
-        self.building = tk.Label(self.frame_shop, text="Building")
-        self.building.grid(row=1, column=1)
-        self.count = tk.Label(self.frame_shop, text="Quantity")
-        self.count.grid(row=1, column=2)
+        # Creates shop titles
+        self.shoptitlelist = ["price", "building", "quantity"]
+        for i, entry in enumerate(self.shoptitlelist):
+            self.entry = tk.Label(self.frame_shop, text=entry.capitalize())
+            self.entry.grid(row=1, column=i)
 
-        self.label_list = []
+        # Creates the entire shop: Prices, Buy buttons, & Quantity numbers based on PLAYER.inventory
+        self.count_list = []
         self.price_list = []
         index = 1
         r = 2
@@ -62,40 +70,72 @@ class GameWindow:
             # makes count labels
             self.key = tk.Label(self.frame_shop, width=20, text=str(PLAYER.inventory[key][0]))
             self.key.grid(row=r, column=2)
-            self.label_list.append(self.key)
+            self.count_list.append(self.key)
             r += 1
             index += 1
 
     def ck_click(self):
+        """
+        If the player clicks the cookie, add a cookie and update the balance
+        :return:
+        """
         PLAYER.balance += 1
         self.bal_show.config(text="Balance: " + str(GameWindow.disp_num(round(PLAYER.balance))))
 
     def buy(self, choice):
+        """
+        Runs the backend for purchasing buildings
+        :param choice:
+        :return:
+        """
         index = 1
+        # For every building possible...
         for key in PLAYER.inventory:
+            # If the player bought one of these buildings...
             if choice == index:
+                # And if the player can afford it at it's current price...
                 if PLAYER.balance >= PLAYER.inventory[key][2]:
+                    # Take the cookies from the player
                     PLAYER.balance -= PLAYER.inventory[key][2]
+                    # Give the player one building
                     PLAYER.inventory[key][0] += 1
+                    # Raise the price of the next building
                     PLAYER.inventory[key][2] *= 1.15
 
+                    # Update their balance
                     self.bal_show.config(text="Balance: " + str(GameWindow.disp_num(round(PLAYER.balance))))
-                    self.label_list[choice - 1].config(text=GameWindow.disp_num(PLAYER.inventory[key][0]))
+                    # Update the building's count list
+                    self.count_list[choice - 1].config(text=GameWindow.disp_num(PLAYER.inventory[key][0]))
+                    # Update the building's price list
                     self.price_list[choice - 1].config(text='$' +
                                                             str(GameWindow.disp_num(round(PLAYER.inventory[key][2]))))
+                    # Recalculate and update the cps
                     PLAYER.cps_update()
                     self.cps_show.config(text="Clicks per Second (cps): " + str(GameWindow.disp_num(PLAYER.cps)))
                     break
             index += 1
 
     def game_tick(self):
+        """
+        Adds the amount of cookies the player should receive every second
+        :return:
+        """
+        # Ensure the cps is correct
         PLAYER.cps_update()
+        # Add the cps to the player's balance
         PLAYER.balance += PLAYER.cps
+        # Update the balance
         self.bal_show.config(text="Balance: " + str(GameWindow.disp_num(round(PLAYER.balance))))
+        # Repeat after 1000ms
         self.bal_show.after(1000, self.game_tick)
 
     @staticmethod
     def disp_num(num):
+        """
+        Formats the numbers to include numbers after 1,000,000
+        :param num:
+        :return:
+        """
         if 1 <= num / (1*10**6) < 1000:
             return str(round(num/(1*10**6), 2)) + " million"
 
@@ -136,12 +176,17 @@ class Player:
         self.cps = 0
 
     def cps_update(self):
+        """
+        Updates the player's cps based on inventory
+        :return:
+        """
         self.cps = 0
         for key, value in self.inventory.items():
             self.cps += value[0] * value[1]
 
 
 if __name__ == '__main__':
+    # STARTS THE GAME
     PLAYER = Player()
     root = tk.Tk()
     app = GameWindow(root)
