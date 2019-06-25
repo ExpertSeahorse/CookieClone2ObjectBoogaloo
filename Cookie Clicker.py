@@ -1,10 +1,11 @@
 import tkinter as tk
+import json
+from time import time
 # TODO: Add "buy 10x & 100x"
 # TODO: Add upgrades
 # TODO: Add Mouse over menu for each building's: cps, %of total, total cookies so far
 # TODO: Add Stats rollover page
-# TODO: Game auto-saves (JSON)
-# TODO: Using auto-save, calculate cookies earned in down time
+# TODO: Add restarting incentive (Ascend)
 
 
 class GameWindow:
@@ -28,8 +29,8 @@ class GameWindow:
         self.bal_show.pack()
 
         # Runs the game tick if the player has purchased a building # May remove this for accurate run time
-        if PLAYER.inventory:
-            self.game_tick()
+        self.save_counter = 0
+        self.game_tick()
         # Creates cps number
         self.cps_show = tk.Label(master, text="Clicks per Second (cps): " + str(PLAYER.cps))
         self.cps_show.pack()
@@ -40,7 +41,7 @@ class GameWindow:
         self.frame_shop.pack(side=tk.TOP, fill=tk.X)
 
         # Creates shop grid
-        self.label = tk.Label(self.frame_shop, text="#################Shop#################")
+        self.label = tk.Label(self.frame_shop, text="################# Shop #################")
         self.label.grid(columnspan=3)
 
         # Creates shop titles
@@ -73,6 +74,12 @@ class GameWindow:
             self.count_list.append(self.key)
             r += 1
             index += 1
+
+        self.exportbutton = tk.Button(master, width=10, text="Export Save", command=PLAYER.exportsave)
+        self.exportbutton.pack()
+
+        self.importbutton = tk.Button(master, width=10, text="Import Save", command=PLAYER.importsave)
+        self.importbutton.pack()
 
     def ck_click(self):
         """
@@ -121,13 +128,17 @@ class GameWindow:
         :return:
         """
         # Ensure the cps is correct
-        PLAYER.cps_update()
+        PLAYER.cps_update(game_tick=1)
         # Add the cps to the player's balance
         PLAYER.balance += PLAYER.cps
         # Update the balance
         self.bal_show.config(text="Balance: " + str(GameWindow.display_num(round(PLAYER.balance))))
+        self.save_counter += 1
+        if self.save_counter % 300000 == 0:
+            self.save_counter = 0
+            PLAYER.exportsave()
         # Repeat after 1000ms
-        self.bal_show.after(1000, self.game_tick)
+        self.bal_show.after(10, self.game_tick)
 
     @staticmethod
     def display_num(num):
@@ -150,6 +161,8 @@ class GameWindow:
 
         else:
             return num
+
+
 ########################################################################################################################
 
 
@@ -172,22 +185,61 @@ class Player:
                           'prism': [0, 2.9*10**9, 2.1*10**15],
                           'chance maker': [0, 2.1*10**10, 2.6*10**16],
                           'fractal engine': [0, 1.5*10**11, 3.1*10**17]}
-        #                 'key_name': ['count', 'cps', 'price']
+        #                 'key_name': [count, cps, price]
         self.cps = 0
+        self.start_time = time()
+        self.full_inventory = {}
 
-    def cps_update(self):
+    def cps_update(self, game_tick=0):
         """
         Updates the player's cps based on inventory
         :return:
         """
         self.cps = 0
         for key, value in self.inventory.items():
-            self.cps += value[0] * value[1]
+            if not game_tick:
+                self.cps += value[0] * value[1]
+            elif game_tick == 1:
+                self.cps += value[0] * (value[1]/100)
+
+    def exportsave(self):
+        print("Starting save...")
+        self.full_inventory = {'balance': self.balance,
+                               'inventory': self.inventory,
+                               'time': self.start_time}
+        with open("CookieClone Save", "w", encoding="utf-8") as file:
+            json.dump(self.full_inventory, file, ensure_ascii=False, indent=2)
+        print("Finished!")
+
+    def importsave(self):
+        print("Loading save...")
+        with open("CookieClone Save", "r", encoding="utf-8") as file:
+            self.full_inventory = json.load(file)
+        self.balance = self.full_inventory['balance']
+        self.inventory = self.full_inventory['inventory']
+        self.start_time = self.full_inventory['time']
+        # self.time = self.full_inventory['time']
+
+        i = 0
+        for key in self.inventory:
+            # Update all building count lists
+            GAME.count_list[i].config(text=GameWindow.display_num(self.inventory[key][0]))
+            # Update all building price lists
+            GAME.price_list[i].config(text='$' +
+                                           str(GameWindow.display_num(round(self.inventory[key][2]))))
+            i += 1
+
+        # Recalculate and update the cps
+        self.cps_update()
+        self.balance += self.cps * (time() - self.start_time)
+        GAME.cps_show.config(text="Clicks per Second (cps): " + str(GameWindow.display_num(round(self.cps, 1))))
+
+        print("Finished!")
 
 
 if __name__ == '__main__':
     # STARTS THE GAME
     PLAYER = Player()
     root = tk.Tk()
-    app = GameWindow(root)
+    GAME = GameWindow(root)
     root.mainloop()
