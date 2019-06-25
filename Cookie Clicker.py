@@ -75,11 +75,11 @@ class GameWindow:
             r += 1
             index += 1
 
-        self.exportbutton = tk.Button(master, width=10, text="Export Save", command=PLAYER.exportsave)
-        self.exportbutton.pack()
+        self.export_button = tk.Button(master, width=10, text="Export Save", command=PLAYER.export_save)
+        self.export_button.pack()
 
-        self.importbutton = tk.Button(master, width=10, text="Import Save", command=PLAYER.importsave)
-        self.importbutton.pack()
+        self.import_button = tk.Button(master, width=10, text="Import Save", command=PLAYER.import_save)
+        self.import_button.pack()
 
     def ck_click(self):
         """
@@ -136,7 +136,7 @@ class GameWindow:
         self.save_counter += 1
         if self.save_counter % 300000 == 0:
             self.save_counter = 0
-            PLAYER.exportsave()
+            PLAYER.export_save()
         # Repeat after 1000ms
         self.bal_show.after(10, self.game_tick)
 
@@ -202,7 +202,7 @@ class Player:
             elif game_tick == 1:
                 self.cps += value[0] * (value[1]/100)
 
-    def exportsave(self):
+    def export_save(self):
         print("Starting save...")
         self.full_inventory = {'balance': self.balance,
                                'inventory': self.inventory,
@@ -211,7 +211,7 @@ class Player:
             json.dump(self.full_inventory, file, ensure_ascii=False, indent=2)
         print("Finished!")
 
-    def importsave(self):
+    def import_save(self):
         print("Loading save...")
         with open("CookieClone Save", "r", encoding="utf-8") as file:
             self.full_inventory = json.load(file)
