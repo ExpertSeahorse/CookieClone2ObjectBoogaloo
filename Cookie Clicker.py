@@ -134,7 +134,7 @@ class GameWindow:
         # Update the balance
         self.bal_show.config(text="Balance: " + str(GameWindow.display_num(round(PLAYER.balance))))
         self.save_counter += 1
-        if self.save_counter % 300000 == 0:
+        if self.save_counter % 30000 == 0:
             self.save_counter = 0
             PLAYER.export_save()
         # Repeat after 1000ms
