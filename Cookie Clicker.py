@@ -175,30 +175,30 @@ class GameWindow:
             for t in toktext:
                 self.add_command(label=t)
             self._displayed = False
-            self.master.bind("<Enter>", self.Display)
-            self.master.bind("<Leave>", self.Remove)
+            self.master.bind("<Enter>", self.display)
+            self.master.bind("<Leave>", self.remove)
 
-    def __del__(self):
-        self.master.unbind("<Enter>")
-        self.master.unbind("<Leave>")
+        def __del__(self):
+            self.master.unbind("<Enter>")
+            self.master.unbind("<Leave>")
 
-    def Display(self, event):
-        if not self._displayed:
-            self._displayed = True
-            self.post(event.x_root, event.y_root)
-        if self._com != None:
-            self.master.unbind_all("<Return>")
-            self.master.bind_all("<Return>", self.Click)
+        def display(self, event):
+            if not self._displayed:
+                self._displayed = True
+                self.post(event.x_root, event.y_root)
+            if self._com:
+                self.master.unbind_all("<Return>")
+                self.master.bind_all("<Return>", self.click)
 
-    def Remove(self, event):
-        if self._displayed:
-            self._displayed = False
-            self.unpost()
-        if self._com != None:
-            self.unbind_all("<Return>")
+        def remove(self, event):
+            if self._displayed:
+                self._displayed = False
+                self.unpost()
+            if self._com:
+                self.unbind_all("<Return>")
 
-    def Click(self, event):
-        self._com()
+        def click(self, event):
+            self._com()
 
 
 ########################################################################################################################
