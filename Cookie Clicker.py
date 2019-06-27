@@ -7,6 +7,7 @@ import re
 # TODO: Add Mouse over menu for each building's: cps, %of total, total cookies so far
 # TODO: Add Stats rollover page
 # TODO: Add restarting incentive (Ascend)
+# TODO: Add scrollbar for smaller screens
 
 
 class GameWindow:
@@ -73,6 +74,8 @@ class GameWindow:
             self.key = tk.Label(self.frame_shop, width=21, text=str(PLAYER.inventory[key][0]))
             self.key.grid(row=r, column=2)
             self.count_list.append(self.key)
+
+            self.hover = self.HoverInfo(self, 'This is\nthe text', self.click())
             r += 1
             index += 1
 
@@ -81,6 +84,9 @@ class GameWindow:
 
         self.import_button = tk.Button(master, width=10, text="Import Save", command=PLAYER.import_save)
         self.import_button.pack()
+
+    def click(self):
+        print("Hello")
 
     def ck_click(self):
         """
@@ -178,16 +184,11 @@ class GameWindow:
             self.master.bind("<Enter>", self.display)
             self.master.bind("<Leave>", self.remove)
 
-        def __del__(self):
-            self.master.unbind("<Enter>")
-            self.master.unbind("<Leave>")
-
         def display(self, event):
             if not self._displayed:
                 self._displayed = True
                 self.post(event.x_root, event.y_root)
             if self._com:
-                self.master.unbind_all("<Return>")
                 self.master.bind_all("<Return>", self.click)
 
         def remove(self, event):
