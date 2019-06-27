@@ -60,17 +60,17 @@ class GameWindow:
             label = key.lower().capitalize()
 
             # makes price labels
-            self.price_name = tk.Label(self.frame_shop, width=20,
+            self.price_name = tk.Label(self.frame_shop, width=21,
                                        text='$' + str(GameWindow.display_num(PLAYER.inventory[key][2])))
             self.price_name.grid(row=r)
             self.price_list.append(self.price_name)
 
             # makes purchase buttons
-            self.but_name = tk.Button(self.frame_shop, text=label, width=20, command=lambda j=index: self.buy(j))
+            self.but_name = tk.Button(self.frame_shop, text=label, width=21, command=lambda j=index: self.buy(j))
             self.but_name.grid(row=r, column=1)
 
             # makes count labels
-            self.key = tk.Label(self.frame_shop, width=20, text=str(PLAYER.inventory[key][0]))
+            self.key = tk.Label(self.frame_shop, width=21, text=str(PLAYER.inventory[key][0]))
             self.key.grid(row=r, column=2)
             self.count_list.append(self.key)
             r += 1
@@ -128,7 +128,7 @@ class GameWindow:
         Adds the amount of cookies the player should receive every second
         :return:
         """
-        # Ensure the cps is correct
+        # Ensure the cps is correct, uses the cps / 100 to make the bal update live, while using 1sec as the baseline
         PLAYER.cps_update(game_tick=1)
         # Add the cps to the player's balance
         PLAYER.balance += PLAYER.cps
@@ -138,7 +138,7 @@ class GameWindow:
         if self.save_counter % 30000 == 0:
             self.save_counter = 0
             PLAYER.export_save()
-        # Repeat after 1000ms
+        # Repeat after 10ms
         self.bal_show.after(10, self.game_tick)
 
     @staticmethod
@@ -226,6 +226,7 @@ class Player:
         #                 'key_name': [count, cps, price]
         self.cps = 0
         self.start_time = time()
+        self.pause_time = 0
         self.full_inventory = {}
 
     def cps_update(self, game_tick=0):
@@ -242,9 +243,11 @@ class Player:
 
     def export_save(self):
         print("Starting save...")
+        self.pause_time = time()
         self.full_inventory = {'balance': self.balance,
-                               'inventory': self.inventory,
-                               'time': self.start_time}
+                               'init_time': self.start_time,
+                               'pause_time': self.pause_time,
+                               'inventory': self.inventory}
         with open("CookieClone Save", "w", encoding="utf-8") as file:
             json.dump(self.full_inventory, file, ensure_ascii=False, indent=2)
         print("Finished!")
@@ -255,8 +258,8 @@ class Player:
             self.full_inventory = json.load(file)
         self.balance = self.full_inventory['balance']
         self.inventory = self.full_inventory['inventory']
-        self.start_time = self.full_inventory['time']
-        # self.time = self.full_inventory['time']
+        self.start_time = self.full_inventory['init_time']
+        self.pause_time = self.full_inventory['pause_time']
 
         i = 0
         for key in self.inventory:
@@ -269,7 +272,8 @@ class Player:
 
         # Recalculate and update the cps
         self.cps_update()
-        self.balance += self.cps * (time() - self.start_time)
+        self.balance += self.cps * (time() - self.pause_time)
+
         GAME.cps_show.config(text="Clicks per Second (cps): " + str(GameWindow.display_num(round(self.cps, 1))))
 
         print("Finished!")
