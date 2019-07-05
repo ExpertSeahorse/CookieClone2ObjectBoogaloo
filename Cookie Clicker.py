@@ -1,7 +1,6 @@
 import tkinter as tk
 import json
 from time import time, ctime
-import re
 # TODO: Add "buy 10x & 100x"
 # TODO: Add upgrades
 # TODO: Add restarting incentive (Ascend)
@@ -92,9 +91,9 @@ class GameWindow:
 
         # Creates Misc Buttons
         self.misclist = (("Export Save", PLAYER.export_save, 1, 0),
-                              ("Import Save", PLAYER.import_save, 1, 1),
-                              ("Stats", self.stats_win, 2, 0),
-                              (" ", None, 2, 1))
+                         ("Import Save", PLAYER.import_save, 1, 1),
+                         ("Stats", self.stats_win, 2, 0),
+                         (" ", None, 2, 1))
         for text, comm, r, c in self.misclist:
             self.button = tk.Button(self.frame_misc, width=10, text=text, command=comm)
             self.button.grid(row=r, column=c)
@@ -102,9 +101,10 @@ class GameWindow:
     def create_tooltip(self, key, entry, index):
         """
         Creates tooltips
-        :param entry: 
+        :param key:
+        :param entry:
         :param index:
-        :return: 
+        :return:
         """
         label = key.capitalize()
         # Gets the cps created by the building type
@@ -164,8 +164,8 @@ class GameWindow:
 
                     # Update all the tooltips (for cps%)
                     i = 0
-                    for name, building in PLAYER.inventory.items():
-                        self.create_tooltip(name, building, i)
+                    for name, entry in PLAYER.inventory.items():
+                        self.create_tooltip(name, entry, i)
                         i += 1
                     break
             index += 1
@@ -211,6 +211,7 @@ class GameWindow:
         else:
             return str(num)
 
+    # noinspection PyAttributeOutsideInit
     def stats_win(self):
         self.app = self.Stats(tk.Toplevel(self.master))
 
@@ -266,20 +267,26 @@ class GameWindow:
                 self.info.grid(row=r, column=1)
                 r += 1
 
+    # noinspection PyUnusedLocal,PyAttributeOutsideInit
     class CreateToolTip(object):
         """
-        create a tooltip for the buildings in the shop
+        tk_ToolTip_class101.py
+        gives a Tkinter widget a tooltip as the mouse is above the widget
+        tested with Python27 and Python34  by  vegaseat  09sep2014
+        www.daniweb.com/programming/software-development/code/484591/a-tooltip-class-for-tkinter
+
+        Modified to include a delay time by Victor Zaccardo, 25mar16
         """
 
         def __init__(self, widget, text='widget info'):
-            self.waittime = 500  # milliseconds
+            self.waittime = 300  # milliseconds
             self.wraplength = 400  # pixels
             self.widget = widget
             self.text = text
             self.widget.bind("<Enter>", self.enter)
             self.widget.bind("<Leave>", self.leave)
             self.widget.bind("<ButtonPress>", self.leave)
-            self.id = None
+            self.id_ = None
             self.tw = None
 
         def enter(self, event=None):
@@ -291,13 +298,13 @@ class GameWindow:
 
         def schedule(self):
             self.unschedule()
-            self.id = self.widget.after(self.waittime, self.showtip)
+            self.id_ = self.widget.after(self.waittime, self.showtip)
 
         def unschedule(self):
-            id = self.id
-            self.id = None
-            if id:
-                self.widget.after_cancel(id)
+            id_ = self.id_
+            self.id_ = None
+            if id_:
+                self.widget.after_cancel(id_)
 
         def showtip(self, event=None):
             x = y = 0
@@ -310,8 +317,8 @@ class GameWindow:
             self.tw.wm_overrideredirect(True)
             self.tw.wm_geometry("+%d+%d" % (x, y))
             self.label = tk.Label(self.tw, text=self.text, justify='left',
-                             background="#ffffff", relief='solid', borderwidth=1,
-                             wraplength=self.wraplength)
+                                  background="#ffffff", relief='solid', borderwidth=1,
+                                  wraplength=self.wraplength)
             self.label.pack(ipadx=1)
 
         def hidetip(self):
