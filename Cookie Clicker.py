@@ -55,6 +55,7 @@ class GameWindow:
         # Creates the entire shop: Prices, Buy buttons, & Quantity numbers based on PLAYER.inventory
         self.count_list = []
         self.price_list = []
+        self.button_lst = []
         index = 1
         r = 2
         for key in PLAYER.inventory:
@@ -63,15 +64,18 @@ class GameWindow:
 
             # makes price labels
             self.price_name = tk.Label(self.frame_shop, width=21,
-                                       text='$' + str(GameWindow.display_num(entry[2])))
+                                       text='$' + GameWindow.display_num(entry[2]))
             self.price_name.grid(row=r)
             self.price_list.append(self.price_name)
 
             # makes purchase buttons
             self.but_name = tk.Button(self.frame_shop, text=label, width=21, command=lambda j=index: self.buy(j))
             self.but_name.grid(row=r, column=1)
-            self.ttp = self.CreateToolTip(self.but_name, "--Each " + label + " produces " + str(GameWindow.display_num(entry[1])) + " cookies per second\n" +
-                                          "--" + str(entry[0]) + " " + label + "s producing " + str(GameWindow.display_num(entry[0] * entry[1])) + " cookies per second")
+            self.button_lst.append(self.but_name)
+
+            # makes tooltips for shop buttons
+            self.ttp = self.CreateToolTip(self.but_name, "--Each " + label + " produces " + GameWindow.display_num(entry[1]) + " cookies per second\n" +
+                                          "--" + GameWindow.display_num(entry[0]) + " " + label + "s producing " + GameWindow.display_num(entry[0] * entry[1]) + " cookies per second")
 
             # makes count labels
             self.key = tk.Label(self.frame_shop, width=21, text=str(PLAYER.inventory[key][0]))
@@ -115,16 +119,22 @@ class GameWindow:
                     # Raise the price of the next building
                     PLAYER.inventory[key][2] *= 1.15
 
+                    building = PLAYER.inventory[key]
+
                     # Update their balance
-                    self.bal_show.config(text="Balance: " + str(GameWindow.display_num(round(PLAYER.balance))))
+                    self.bal_show.config(text="Balance: " + GameWindow.display_num(round(PLAYER.balance)))
                     # Update the building's count list
-                    self.count_list[choice - 1].config(text=GameWindow.display_num(PLAYER.inventory[key][0]))
+                    self.count_list[choice - 1].config(text=GameWindow.display_num(building[0]))
                     # Update the building's price list
                     self.price_list[choice - 1].config(text='$' +
-                                                       str(GameWindow.display_num(round(PLAYER.inventory[key][2]))))
+                                                       GameWindow.display_num(round(building[2])))
                     # Recalculate and update the cps
                     PLAYER.cps_update()
-                    self.cps_show.config(text="Clicks per Second (cps): " + str(GameWindow.display_num(PLAYER.cps)))
+                    self.cps_show.config(text="Clicks per Second (cps): " + GameWindow.display_num(PLAYER.cps))
+
+                    # Update the tooltips
+                    self.ttp = self.CreateToolTip(self.button_lst[choice - 1], "--Each " + key.capitalize() + " produces " + GameWindow.display_num(building[1]) + " cookies per second\n" +
+                                                                               "--" + GameWindow.display_num(building[0]) + " " + key.capitalize() + "s producing " + GameWindow.display_num(building[0] * building[1]) + " cookies per second")
                     break
             index += 1
 
@@ -166,11 +176,11 @@ class GameWindow:
             return str(round(num/(1*10**15), 2)) + " quadrillion"
 
         else:
-            return num
+            return str(num)
 
     class CreateToolTip(object):
         """
-        create a tooltip for a given widget
+        create a tooltip for the buildings in the shop
         """
 
         def __init__(self, widget, text='widget info'):
@@ -211,10 +221,10 @@ class GameWindow:
             # Leaves only the label and removes the app window
             self.tw.wm_overrideredirect(True)
             self.tw.wm_geometry("+%d+%d" % (x, y))
-            label = tk.Label(self.tw, text=self.text, justify='left',
+            self.label = tk.Label(self.tw, text=self.text, justify='left',
                              background="#ffffff", relief='solid', borderwidth=1,
                              wraplength=self.wraplength)
-            label.pack(ipadx=1)
+            self.label.pack(ipadx=1)
 
         def hidetip(self):
             tw = self.tw
@@ -226,7 +236,7 @@ class GameWindow:
 
 class Player:
     def __init__(self):
-        self.balance = 0
+        self.balance = 10
         self.inventory = {'auto clicker': [0, .1, 10],
                           'grandma': [0, 1, 100],
                           'farm': [0, 8, 1100],
