@@ -58,24 +58,26 @@ class GameWindow:
         index = 1
         r = 2
         for key in PLAYER.inventory:
+            entry = PLAYER.inventory[key]
             label = key.lower().capitalize()
 
             # makes price labels
             self.price_name = tk.Label(self.frame_shop, width=21,
-                                       text='$' + str(GameWindow.display_num(PLAYER.inventory[key][2])))
+                                       text='$' + str(GameWindow.display_num(entry[2])))
             self.price_name.grid(row=r)
             self.price_list.append(self.price_name)
 
             # makes purchase buttons
             self.but_name = tk.Button(self.frame_shop, text=label, width=21, command=lambda j=index: self.buy(j))
             self.but_name.grid(row=r, column=1)
+            self.ttp = self.CreateToolTip(self.but_name, "--Each " + label + " produces " + str(GameWindow.display_num(entry[1])) + " cookies per second\n" +
+                                          "--" + str(entry[0]) + " " + label + "s producing " + str(GameWindow.display_num(entry[0] * entry[1])) + " cookies per second")
 
             # makes count labels
             self.key = tk.Label(self.frame_shop, width=21, text=str(PLAYER.inventory[key][0]))
             self.key.grid(row=r, column=2)
             self.count_list.append(self.key)
 
-            self.hover = self.HoverInfo(self, 'This is\nthe text', self.click())
             r += 1
             index += 1
 
@@ -84,9 +86,6 @@ class GameWindow:
 
         self.import_button = tk.Button(master, width=10, text="Import Save", command=PLAYER.import_save)
         self.import_button.pack()
-
-    def click(self):
-        print("Hello")
 
     def ck_click(self):
         """
@@ -169,39 +168,59 @@ class GameWindow:
         else:
             return num
 
-    class HoverInfo(tk.Menu):
-        # TODO: Get this hover over menu working
-        # https://stackoverflow.com/questions/20399243/display-message-when-hovering-over-something-with-mouse-cursor-in-python/20399283
-        def __init__(self, parent, text, command=None):
-            self._com = command
-            tk.Menu.__init__(self, parent, tearoff=0)
-            if not isinstance(text, str):
-                raise TypeError('Trying to initialise a Hover Menu with a non string type: ' + text.__class__.__name__)
-            toktext = re.split('\n', text)
-            for t in toktext:
-                self.add_command(label=t)
-            self._displayed = False
-            self.master.bind("<Enter>", self.display)
-            self.master.bind("<Leave>", self.remove)
+    class CreateToolTip(object):
+        """
+        create a tooltip for a given widget
+        """
 
-        def display(self, event):
-            if not self._displayed:
-                self._displayed = True
-                self.post(event.x_root, event.y_root)
-            if self._com:
-                self.master.bind_all("<Return>", self.click)
+        def __init__(self, widget, text='widget info'):
+            self.waittime = 500  # milliseconds
+            self.wraplength = 400  # pixels
+            self.widget = widget
+            self.text = text
+            self.widget.bind("<Enter>", self.enter)
+            self.widget.bind("<Leave>", self.leave)
+            self.widget.bind("<ButtonPress>", self.leave)
+            self.id = None
+            self.tw = None
 
-        def remove(self, event):
-            if self._displayed:
-                self._displayed = False
-                self.unpost()
-            if self._com:
-                self.unbind_all("<Return>")
+        def enter(self, event=None):
+            self.schedule()
 
-        def click(self, event):
-            self._com()
+        def leave(self, event=None):
+            self.unschedule()
+            self.hidetip()
 
+        def schedule(self):
+            self.unschedule()
+            self.id = self.widget.after(self.waittime, self.showtip)
 
+        def unschedule(self):
+            id = self.id
+            self.id = None
+            if id:
+                self.widget.after_cancel(id)
+
+        def showtip(self, event=None):
+            x = y = 0
+            x, y, cx, cy = self.widget.bbox("insert")
+            x += self.widget.winfo_rootx() + 25
+            y += self.widget.winfo_rooty() + 20
+            # creates a toplevel window
+            self.tw = tk.Toplevel(self.widget)
+            # Leaves only the label and removes the app window
+            self.tw.wm_overrideredirect(True)
+            self.tw.wm_geometry("+%d+%d" % (x, y))
+            label = tk.Label(self.tw, text=self.text, justify='left',
+                             background="#ffffff", relief='solid', borderwidth=1,
+                             wraplength=self.wraplength)
+            label.pack(ipadx=1)
+
+        def hidetip(self):
+            tw = self.tw
+            self.tw = None
+            if tw:
+                tw.destroy()
 ########################################################################################################################
 
 
