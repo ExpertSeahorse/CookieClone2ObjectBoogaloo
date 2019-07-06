@@ -486,5 +486,7 @@ Notes:
 Upgrades:
     --Upgrades will need to be a list of objects that have an effect and a price
     --Buildings will need a multiplier category for these to go into effect
-
+Multi-Purchases:
+    --Use 3 radio buttons that all fit into one grid cell, formated to look like real buttons
+    --Import their value into the buy to determine amount purchased
 """
