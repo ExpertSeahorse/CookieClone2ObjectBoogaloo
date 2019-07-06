@@ -1,6 +1,7 @@
 import tkinter as tk
 import json
 from time import time, ctime
+from os import path
 # TODO: Add "buy 10x & 100x"
 # TODO: Add upgrades
 # TODO: Add restarting incentive (Ascend)
@@ -66,7 +67,7 @@ class GameWindow:
             self.price_list.append(self.price_name)
 
             # makes purchase buttons
-            self.but_name = tk.Button(self.frame_shop, text=label, width=21, command=lambda j=index: self.buy(j))
+            self.but_name = tk.Button(self.frame_shop, text=label, width=20, command=lambda j=index: self.buy(j))
             self.but_name.grid(row=r, column=1)
             self.button_lst.append(self.but_name)
 
@@ -87,16 +88,16 @@ class GameWindow:
 
         # Creates grid
         self.label = tk.Label(self.frame_shop, text="################# Misc #################")
-        self.label.grid(columnspan=2)
+        self.label.grid(columnspan=4)
 
         # Creates Misc Buttons
-        self.misclist = (("Export Save", PLAYER.export_save, 1, 0),
-                         ("Import Save", PLAYER.import_save, 1, 1),
-                         ("Stats", self.stats_win, 2, 0),
-                         (" ", None, 2, 1))
-        for text, comm, r, c in self.misclist:
-            self.button = tk.Button(self.frame_misc, width=10, text=text, command=comm)
-            self.button.grid(row=r, column=c)
+        self.misclist = (("Export Save", PLAYER.export_save, 0),
+                         ("Import Save", PLAYER.import_save, 1),
+                         ("Stats", self.stats_win, 2),
+                         (" ", None, 3))
+        for text, comm, c in self.misclist:
+            self.button = tk.Button(self.frame_misc, width=15, text=text, command=comm)
+            self.button.grid(row=1, column=c)
 
     def create_tooltip(self, key, entry, index):
         """
@@ -466,15 +467,18 @@ class Player:
 
         # Updates the cps label
         GAME.cps_show.config(text="Clicks per Second (cps): " + str(GameWindow.display_num(round(self.cps, 1))))
-
         print("Finished!")
 
 
 if __name__ == '__main__':
     # STARTS THE GAME
-    PLAYER = Player()
     root = tk.Tk()
+    PLAYER = Player()
     GAME = GameWindow(root)
+    # if there is a saved game...
+    if path.exists('CookieClone Save'):
+        # import the save
+        PLAYER.import_save()
     root.mainloop()
 
 """
