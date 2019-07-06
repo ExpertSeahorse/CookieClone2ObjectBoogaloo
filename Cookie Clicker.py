@@ -1,6 +1,6 @@
 import tkinter as tk
 import json
-from time import time, ctime
+from time import time
 from os import path
 # TODO: Add "buy 10x & 100x"
 # TODO: Add upgrades
@@ -46,8 +46,8 @@ class GameWindow:
         self.label.grid(columnspan=3)
 
         # Creates shop titles
-        self.shoptitlelist = ["price", "building", "quantity"]
-        for i, entry in enumerate(self.shoptitlelist):
+        self.shop_title_list = ["price", "building", "quantity"]
+        for i, entry in enumerate(self.shop_title_list):
             self.entry = tk.Label(self.frame_shop, text=entry.capitalize())
             self.entry.grid(row=1, column=i)
 
@@ -62,7 +62,7 @@ class GameWindow:
 
             # makes price labels
             self.price_name = tk.Label(self.frame_shop, width=21,
-                                       text='$' + GameWindow.display_num(entry[2]))
+                                       text='$' + display_num(entry[2]))
             self.price_name.grid(row=r)
             self.price_list.append(self.price_name)
 
@@ -91,11 +91,11 @@ class GameWindow:
         self.label.grid(columnspan=4)
 
         # Creates Misc Buttons
-        self.misclist = (("Export Save", PLAYER.export_save, 0),
+        self.misc_list = (("Export Save", PLAYER.export_save, 0),
                          ("Import Save", PLAYER.import_save, 1),
                          ("Stats", self.stats_win, 2),
                          (" ", None, 3))
-        for text, comm, c in self.misclist:
+        for text, comm, c in self.misc_list:
             self.button = tk.Button(self.frame_misc, width=15, text=text, command=comm)
             self.button.grid(row=1, column=c)
 
@@ -118,9 +118,9 @@ class GameWindow:
             build_cps_ratio = str(0.0)
 
         # Creates the tooltip
-        self.CreateToolTip(self.button_lst[index],
-                           "--Each " + label + " produces " + GameWindow.display_num(entry[1]) + " cookies per second\n" +
-                           "--" + GameWindow.display_num(entry[0]) + " " + label + "s producing " + GameWindow.display_num(build_cps) + " cookies per second (" + build_cps_ratio + "%)")
+        CreateToolTip(self.button_lst[index],
+                           "--Each " + label + " produces " + display_num(entry[1]) + " cookies per second\n" +
+                           "--" + display_num(entry[0]) + " " + label + "s producing " + display_num(build_cps) + " cookies per second (" + build_cps_ratio + "%)")
 
     def ck_click(self):
         """
@@ -130,7 +130,7 @@ class GameWindow:
         PLAYER.balance += 1
         PLAYER.earned += 1
         PLAYER.handmade += 1
-        self.bal_show.config(text="Balance: " + str(GameWindow.display_num(round(PLAYER.balance))))
+        self.bal_show.config(text="Balance: " + str(display_num(round(PLAYER.balance))))
 
     def buy(self, choice):
         """
@@ -153,15 +153,15 @@ class GameWindow:
                     PLAYER.inventory[key][2] *= 1.15
 
                     # Update their balance
-                    self.bal_show.config(text="Balance: " + GameWindow.display_num(round(PLAYER.balance)))
+                    self.bal_show.config(text="Balance: " + display_num(round(PLAYER.balance)))
                     # Update the building's count list
-                    self.count_list[choice - 1].config(text=GameWindow.display_num(building[0]))
+                    self.count_list[choice - 1].config(text=display_num(building[0]))
                     # Update the building's price list
                     self.price_list[choice - 1].config(text='$' +
-                                                       GameWindow.display_num(round(building[2])))
+                                                       display_num(round(building[2])))
                     # Recalculate and update the cps
                     PLAYER.cps_update()
-                    self.cps_show.config(text="Clicks per Second (cps): " + GameWindow.display_num(PLAYER.cps))
+                    self.cps_show.config(text="Clicks per Second (cps): " + display_num(PLAYER.cps))
 
                     # Update all the tooltips (for cps%)
                     i = 0
@@ -182,7 +182,7 @@ class GameWindow:
         PLAYER.balance += PLAYER.cps
         PLAYER.earned += PLAYER.cps
         # Update the balance
-        self.bal_show.config(text="Balance: " + GameWindow.display_num(round(PLAYER.balance)))
+        self.bal_show.config(text="Balance: " + display_num(round(PLAYER.balance)))
         self.save_counter += 1
         if self.save_counter % 30000 == 0:
             self.save_counter = 0
@@ -190,68 +190,24 @@ class GameWindow:
         # Repeat after 10ms
         self.bal_show.after(10, self.game_tick)
 
-    @staticmethod
-    def display_num(num):
-        """
-        Formats the numbers to include numbers after 1,000,000
-        :param num:
-        :return:
-        """
-        if 1 <= num / (1*10**6) < 1000:
-            return str(round(num/(1*10**6), 2)) + " million"
 
-        elif 1 <= num / (1*10**9) < 1000:
-            return str(round(num/(1*10**9), 2)) + " billion"
-
-        elif 1 <= num / (1*10**12) < 1000:
-            return str(round(num/(1*10**12), 2)) + " trillion"
-
-        elif 1 <= num / (1*10**15) < 1000:
-            return str(round(num/(1*10**15), 2)) + " quadrillion"
-
-        else:
-            return str(num)
 
     # noinspection PyAttributeOutsideInit
     def stats_win(self):
         self.app = self.Stats(tk.Toplevel(self.master))
 
-    @staticmethod
-    def time_delta_display(sec):
-        # Conversion key
-        intervals = (('weeks', 604800),  # 60 * 60 * 24 * 7
-                     ('days', 86400),    # 60 * 60 * 24
-                     ('hours', 3600),    # 60 * 60
-                     ('minutes', 60),
-                     ('seconds', 1),)
-        result = []
-        # For each of the above categories...
-        for name, count in intervals:
-            # Divide the input number of seconds by the counter from the list
-            value = sec // count
-            # If that value is > 0...
-            if value:
-                # Subtract the whole number amount from the inputted number(we use the remainder in later iterations)
-                sec -= value * count
-                # If there is only 1 instance of the unit (1 week, 1 hour, ...)...
-                if value == 1:
-                    # Remove the 's' from the displayed name
-                    name = name.rstrip('s')
-                # Add the unit and amount to an array
-                result.append("{} {}".format(value, name))
-        # Return the array as a string
-        return ', '.join(result)
+
 
     class Stats:
         def __init__(self, master):
-            PLAYER.stats = {'balance': GameWindow.display_num(round(PLAYER.balance)),
-                            'earned': GameWindow.display_num(round(PLAYER.earned)),
-                            'lifetime': GameWindow.display_num(round(PLAYER.life_earned)),
-                            'cps': GameWindow.display_num(round(PLAYER.cps * 100)),
+            PLAYER.stats = {'balance': display_num(round(PLAYER.balance)),
+                            'earned': display_num(round(PLAYER.earned)),
+                            'lifetime': display_num(round(PLAYER.life_earned)),
+                            'cps': display_num(round(PLAYER.cps * 100)),
                             'init_time': PLAYER.start_time,
                             'building count': PLAYER.building_counter(),
                             'click strength': PLAYER.click_str,
-                            'handmade': GameWindow.display_num(PLAYER.handmade)}
+                            'handmade': display_num(PLAYER.handmade)}
             self.label = tk.Label(master, text="################# Stats #################")
             self.label.grid(columnspan=2)
 
@@ -262,7 +218,7 @@ class GameWindow:
                 if key == 'init_time':
                     self.key = tk.Label(master, text="Time Passed")
                     self.key.grid(row=r)
-                    self.info = tk.Label(master, text=GameWindow.time_delta_display(time() - PLAYER.stats[key]))
+                    self.info = tk.Label(master, text=time_delta_display(time() - PLAYER.stats[key]))
                     self.info.grid(row=r, column=1)
                     r += 1
                     continue
@@ -272,66 +228,7 @@ class GameWindow:
                 self.info.grid(row=r, column=1)
                 r += 1
 
-    # I didn't create this class and therefore have only a working knowledge of how it works
-    # noinspection PyUnusedLocal,PyAttributeOutsideInit
-    class CreateToolTip(object):
-        """
-        tk_ToolTip_class101.py
-        gives a Tkinter widget a tooltip as the mouse is above the widget
-        tested with Python27 and Python34  by  vegaseat  09sep2014
-        www.daniweb.com/programming/software-development/code/484591/a-tooltip-class-for-tkinter
 
-        Modified to include a delay time by Victor Zaccardo, 25mar16
-        """
-
-        def __init__(self, widget, text='widget info'):
-            self.waittime = 300  # milliseconds
-            self.wraplength = 400  # pixels
-            self.widget = widget
-            self.text = text
-            self.widget.bind("<Enter>", self.enter)
-            self.widget.bind("<Leave>", self.leave)
-            self.widget.bind("<ButtonPress>", self.leave)
-            self.id_ = None
-            self.tw = None
-
-        def enter(self, event=None):
-            self.schedule()
-
-        def leave(self, event=None):
-            self.unschedule()
-            self.hidetip()
-
-        def schedule(self):
-            self.unschedule()
-            self.id_ = self.widget.after(self.waittime, self.showtip)
-
-        def unschedule(self):
-            id_ = self.id_
-            self.id_ = None
-            if id_:
-                self.widget.after_cancel(id_)
-
-        def showtip(self, event=None):
-            x = y = 0
-            x, y, cx, cy = self.widget.bbox("insert")
-            x += self.widget.winfo_rootx() + 25
-            y += self.widget.winfo_rooty() + 20
-            # creates a toplevel window
-            self.tw = tk.Toplevel(self.widget)
-            # Leaves only the label and removes the app window
-            self.tw.wm_overrideredirect(True)
-            self.tw.wm_geometry("+%d+%d" % (x, y))
-            self.label = tk.Label(self.tw, text=self.text, justify='left',
-                                  background="#ffffff", relief='solid', borderwidth=1,
-                                  wraplength=self.wraplength)
-            self.label.pack(ipadx=1)
-
-        def hidetip(self):
-            tw = self.tw
-            self.tw = None
-            if tw:
-                tw.destroy()
 ########################################################################################################################
 
 
@@ -394,9 +291,9 @@ class Player:
         self.cps = 0
         # for every building in the inventory...
         for key, value in self.inventory.items():
-            # If the calculation isnt for the game logic...
+            # If the calculation isn't for the game logic...
             if not game_tick:
-                # the cps is the sum of the numer of buildings multiplied by their cps value
+                # the cps is the sum of the number of buildings multiplied by their cps value
                 self.cps += value[0] * value[1]
             # if the calculation is for the actual game logic...
             elif game_tick == 1:
@@ -463,10 +360,9 @@ class Player:
         # For every building...
         for key, building in self.inventory.items():
             # Update the count lists
-            GAME.count_list[i].config(text=GameWindow.display_num(building[0]))
+            GAME.count_list[i].config(text=display_num(building[0]))
             # Update the price lists
-            GAME.price_list[i].config(text='$' +
-                                           str(GameWindow.display_num(round(building[2]))))
+            GAME.price_list[i].config(text='$' + display_num(round(building[2])))
             # Create a tooltip rollover
             GAME.create_tooltip(key, building, i)
 
@@ -479,9 +375,117 @@ class Player:
         self.life_earned += self.cps * (time() - self.pause_time)
 
         # Updates the cps label
-        GAME.cps_show.config(text="Clicks per Second (cps): " + str(GameWindow.display_num(round(self.cps, 1))))
+        GAME.cps_show.config(text="Clicks per Second (cps): " + display_num(round(self.cps, 1)))
         print("Finished!")
 
+
+# I didn't create this class and therefore have only a working knowledge of how it works
+# noinspection PyUnusedLocal,PyAttributeOutsideInit
+class CreateToolTip(object):
+    """
+    tk_ToolTip_class101.py
+    gives a Tkinter widget a tooltip as the mouse is above the widget
+    tested with Python27 and Python34  by  vegaseat  09sep2014
+    www.daniweb.com/programming/software-development/code/484591/a-tooltip-class-for-tkinter
+
+    Modified to include a delay time by Victor Zaccardo, 25mar16
+    """
+
+    def __init__(self, widget, text='widget info'):
+        self.wait_time = 300  # milliseconds
+        self.wrap_length = 400  # pixels
+        self.widget = widget
+        self.text = text
+        self.widget.bind("<Enter>", self.enter)
+        self.widget.bind("<Leave>", self.leave)
+        self.widget.bind("<ButtonPress>", self.leave)
+        self.id_ = None
+        self.tw = None
+
+    def enter(self, event=None):
+        self.schedule()
+
+    def leave(self, event=None):
+        self.unschedule()
+        self.hidetip()
+
+    def schedule(self):
+        self.unschedule()
+        self.id_ = self.widget.after(self.wait_time, self.showtip)
+
+    def unschedule(self):
+        id_ = self.id_
+        self.id_ = None
+        if id_:
+            self.widget.after_cancel(id_)
+
+    def showtip(self, event=None):
+        x = y = 0
+        x, y, cx, cy = self.widget.bbox("insert")
+        x += self.widget.winfo_rootx() + 25
+        y += self.widget.winfo_rooty() + 20
+        # creates a toplevel window
+        self.tw = tk.Toplevel(self.widget)
+        # Leaves only the label and removes the app window
+        self.tw.wm_overrideredirect(True)
+        self.tw.wm_geometry("+%d+%d" % (x, y))
+        self.label = tk.Label(self.tw, text=self.text, justify='left',
+                              background="#ffffff", relief='solid', borderwidth=1,
+                              wraplength=self.wrap_length)
+        self.label.pack(ipadx=1)
+
+    def hidetip(self):
+        tw = self.tw
+        self.tw = None
+        if tw:
+            tw.destroy()
+
+
+def time_delta_display(sec):
+        # Conversion key
+        intervals = (('weeks', 604800),  # 60 * 60 * 24 * 7
+                     ('days', 86400),    # 60 * 60 * 24
+                     ('hours', 3600),    # 60 * 60
+                     ('minutes', 60),
+                     ('seconds', 1),)
+        result = []
+        # For each of the above categories...
+        for name, count in intervals:
+            # Divide the input number of seconds by the counter from the list
+            value = sec // count
+            # If that value is > 0...
+            if value:
+                # Subtract the whole number amount from the inputted number(we use the remainder in later iterations)
+                sec -= value * count
+                # If there is only 1 instance of the unit (1 week, 1 hour, ...)...
+                if value == 1:
+                    # Remove the 's' from the displayed name
+                    name = name.rstrip('s')
+                # Add the unit and amount to an array
+                result.append("{} {}".format(value, name))
+        # Return the array as a string
+        return ', '.join(result)
+
+def display_num(num):
+        """
+        Formats the numbers to include numbers after 1,000,000
+        :param num:
+        :return:
+        """
+        if 1 <= num / (1*10**6) < 1000:
+            return str(round(num/(1*10**6), 2)) + " million"
+
+        elif 1 <= num / (1*10**9) < 1000:
+            return str(round(num/(1*10**9), 2)) + " billion"
+
+        elif 1 <= num / (1*10**12) < 1000:
+            return str(round(num/(1*10**12), 2)) + " trillion"
+
+        elif 1 <= num / (1*10**15) < 1000:
+            return str(round(num/(1*10**15), 2)) + " quadrillion"
+
+        else:
+            return str(num)
 
 if __name__ == '__main__':
     # STARTS THE GAME
