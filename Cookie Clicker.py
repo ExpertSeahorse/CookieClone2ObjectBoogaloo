@@ -395,7 +395,7 @@ class Player:
                 self.cps += value[0] * value[1]
             # if the calculation is for the actual game logic...
             elif game_tick == 1:
-                # the cps of each building is 1/100 the advertised value because the game tick happens every 1/100 seconds
+                # the cps of each building is 1/100 the advertised value b/c the game tick happens every 1/100 seconds
                 self.cps += value[0] * (value[1]/100)
 
     def building_counter(self):
@@ -487,6 +487,6 @@ Upgrades:
     --Upgrades will need to be a list of objects that have an effect and a price
     --Buildings will need a multiplier category for these to go into effect
 Multi-Purchases:
-    --Use 3 radio buttons that all fit into one grid cell, formated to look like real buttons
+    --Use 3 radio buttons that all fit into one grid cell, formatted to look like real buttons
     --Import their value into the buy to determine amount purchased
 """
