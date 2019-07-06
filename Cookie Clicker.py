@@ -218,25 +218,29 @@ class GameWindow:
 
     @staticmethod
     def time_delta_display(sec):
+        # Conversion key
         intervals = (('weeks', 604800),  # 60 * 60 * 24 * 7
                      ('days', 86400),    # 60 * 60 * 24
                      ('hours', 3600),    # 60 * 60
                      ('minutes', 60),
                      ('seconds', 1),)
         result = []
-
+        # For each of the above categories...
         for name, count in intervals:
+            # Divide the input number of seconds by the counter from the list
             value = sec // count
+            # If that value is > 0...
             if value:
+                # Subtract the whole number amount from the inputted number(we use the remainder in later iterations)
                 sec -= value * count
+                # If there is only 1 instance of the unit (1 week, 1 hour, ...)...
                 if value == 1:
+                    # Remove the 's' from the displayed name
                     name = name.rstrip('s')
+                # Add the unit and amount to an array
                 result.append("{} {}".format(value, name))
+        # Return the array as a string
         return ', '.join(result)
-
-    @staticmethod
-    def date_display(sec):
-        return ctime(sec)
 
     class Stats:
         def __init__(self, master):
@@ -268,6 +272,7 @@ class GameWindow:
                 self.info.grid(row=r, column=1)
                 r += 1
 
+    # I didn't create this class and therefore have only a working knowledge of how it works
     # noinspection PyUnusedLocal,PyAttributeOutsideInit
     class CreateToolTip(object):
         """
@@ -409,6 +414,10 @@ class Player:
         return total
 
     def export_save(self):
+        """
+        Creates a save file with all of the information needed to reload the game
+        :return:
+        """
         print("Starting save...")
         # Sets the pause time
         # The program will use this time to calculate the time passed for the sleep cookies to e calculated
@@ -431,6 +440,10 @@ class Player:
         print("Finished!")
 
     def import_save(self):
+        """
+        Reads and reloads the game with data from the save file
+        :return:
+        """
         print("Loading save...")
         # Extracts the stats dict from the saved JSON
         with open("CookieClone Save", "r", encoding="utf-8") as file:
