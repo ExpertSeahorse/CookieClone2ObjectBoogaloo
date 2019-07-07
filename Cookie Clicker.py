@@ -178,14 +178,14 @@ class GameWindow:
                         building[0] += 1
                         # Raise the price of the next building
                         building[2] *= 1.15
-
+# TODO: Ensure the balance updates when a purchase is made for more than 1 building
                     # Update their balance
                     self.bal_show.config(text="Balance: " + display_num(round(PLAYER.balance)))
                     # Update the building's count list
                     self.count_list[choice - 1].config(text=display_num(building[0]))
                     # Update the building's price list
                     self.price_list[choice - 1].config(text='$' +
-                                                       display_num(round(building[2] * (1.15**(self.var.get()-1)))))
+                                                       display_num(round(building[2] * (1.15**(buy_ct-1)))))
                     # Recalculate and update the cps
                     PLAYER.cps_update()
                     self.cps_show.config(text="Clicks per Second (cps): " + display_num(PLAYER.cps))
@@ -485,15 +485,14 @@ def display_num(num):
     :param num:
     :return:
     """
-# TODO: Need to handle floats ending in .0 as well as .*
     if 1 <= num / (1*10**3) < 1000:
-        str_num = str(int(num))
+        str_num = str(round(num, 2))
         r_str_num = str_num[::-1]
-        if type(num) == float:
+        if '.' in r_str_num:
             start_position = r_str_num.index(".")
         else:
-            start_position = 0
-        o = r_str_num[start_position:3] + "," + r_str_num[3:]
+            start_position = -1
+        o = r_str_num[:start_position + 4] + "," + r_str_num[start_position + 4:]
         return o[::-1]
 
     elif 1 <= num / (1*10**6) < 1000:
