@@ -6,6 +6,7 @@ from os import path
 # TODO: Add restarting incentive (Ascend)
 # TODO: Add scrollbar for smaller screens
 # TODO: Achievements
+# TODO: Refactor inventory to use object based buildings (???)
 
 
 class GameWindow:
@@ -58,10 +59,10 @@ class GameWindow:
         self.var = tk.IntVar()
         self.var.set(1)
 
-        radiolist = [("1x", 1),
+        radio_list = [("1x", 1),
                      ("10x", 10),
                      ("100x", 100)]
-        for name, val in radiolist:
+        for name, val in radio_list:
             self.name = tk.Radiobutton(self.frame_mult, text=name, variable=self.var,
                                        value=val, indicatoron=0, width=5, command=self.create_shop)
             self.name.grid(row=0, column=i)
@@ -91,7 +92,10 @@ class GameWindow:
             self.button.grid(row=1, column=c)
 
     def create_shop(self):
-        # Creates the entire shop: Prices, Buy buttons, & Quantity numbers based on PLAYER.inventory
+        """
+        Creates the entire shop: Prices, Buy buttons, & Quantity numbers based on PLAYER.inventory
+        :return:
+        """
         index = 1
         r = 3
         for key, entry in PLAYER.inventory.items():
@@ -224,7 +228,7 @@ class GameWindow:
                             'lifetime': display_num(round(PLAYER.life_earned)),
                             'cps': display_num(round(PLAYER.cps * 100)),
                             'init_time': PLAYER.start_time,
-                            'building count': PLAYER.building_counter(),
+                            'building count': sum(PLAYER.inventory.values()[0]),
                             'click strength': PLAYER.click_str,
                             'handmade': display_num(PLAYER.handmade)}
             self.label = tk.Label(master, text="################# Stats #################")
@@ -319,16 +323,6 @@ class Player:
                 # the cps of each building is 1/100 the advertised value b/c the game tick happens every 1/100 seconds
                 self.cps += value[0] * (value[1]/100)
 
-    def building_counter(self):
-        """
-        Counts the total number of buildings for the stats dict
-        :return:
-        """
-        total = 0
-        for key in self.inventory:
-            total += self.inventory[key][0]
-        return total
-
     def export_save(self):
         """
         Creates a save file with all of the information needed to reload the game
@@ -346,7 +340,7 @@ class Player:
                       'cps': self.cps_update(),
                       'init_time': self.start_time,
                       'pause_time': time(),
-                      'building count': self.building_counter(),
+                      'building count': sum(self.inventory.values()[0]),
                       'click_str': self.click_str,
                       'handmade': self.handmade,
                       'inventory': self.inventory}
