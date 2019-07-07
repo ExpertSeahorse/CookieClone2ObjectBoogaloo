@@ -2,7 +2,6 @@ import tkinter as tk
 import json
 from time import time
 from os import path
-# TODO: Add "buy 10x & 100x"
 # TODO: Add upgrades
 # TODO: Add restarting incentive (Ascend)
 # TODO: Add scrollbar for smaller screens
@@ -51,35 +50,27 @@ class GameWindow:
             self.entry = tk.Label(self.frame_shop, text=entry.capitalize())
             self.entry.grid(row=1, column=i)
 
-        # Creates the entire shop: Prices, Buy buttons, & Quantity numbers based on PLAYER.inventory
+        self.frame_mult = tk.Frame(self.frame_shop)
+        self.frame_mult.grid(row=2, column=1)
+
+        # Creates buy multipliers
+        i = 0
+        self.var = tk.IntVar()
+        self.var.set(1)
+
+        radiolist = [("1x", 1),
+                     ("10x", 10),
+                     ("100x", 100)]
+        for name, val in radiolist:
+            self.name = tk.Radiobutton(self.frame_mult, text=name, variable=self.var,
+                                       value=val, indicatoron=0, width=5, command=self.create_shop)
+            self.name.grid(row=0, column=i)
+            i +=1
+
         self.count_list = []
         self.price_list = []
         self.button_lst = []
-        index = 1
-        r = 2
-        for key, entry in PLAYER.inventory.items():
-            label = key.lower().capitalize()
-
-            # makes price labels
-            self.price_name = tk.Label(self.frame_shop, width=21,
-                                       text='$' + display_num(entry[2]))
-            self.price_name.grid(row=r)
-            self.price_list.append(self.price_name)
-
-            # makes purchase buttons
-            self.but_name = tk.Button(self.frame_shop, text=label, width=20, command=lambda j=index: self.buy(j))
-            self.but_name.grid(row=r, column=1)
-            self.button_lst.append(self.but_name)
-
-            self.create_tooltip(key, entry, index - 1)
-
-            # makes count labels
-            self.key = tk.Label(self.frame_shop, width=21, text=str(PLAYER.inventory[key][0]))
-            self.key.grid(row=r, column=2)
-            self.count_list.append(self.key)
-
-            r += 1
-            index += 1
+        self.create_shop()
 ########################################################################################################################
 
         # MISC FRAME
@@ -98,6 +89,35 @@ class GameWindow:
         for text, comm, c in self.misc_list:
             self.button = tk.Button(self.frame_misc, width=15, text=text, command=comm)
             self.button.grid(row=1, column=c)
+
+    def create_shop(self):
+        # Creates the entire shop: Prices, Buy buttons, & Quantity numbers based on PLAYER.inventory
+        index = 1
+        r = 3
+        for key, entry in PLAYER.inventory.items():
+            label = key.lower().capitalize()
+
+            # makes price labels (for the displayed price: is the price x [1.15^(building mult number-1)]
+            # The '...-1' is because the correct price is stored in the PLAYER.inv entry
+            price_name = tk.Label(self.frame_shop, width=21,
+                                       text='$' + display_num(round(entry[2] * (1.15**(self.var.get()-1)))))
+            price_name.grid(row=r)
+            self.price_list.append(price_name)
+
+            # makes purchase buttons
+            but_name = tk.Button(self.frame_shop, text=label, width=20, command=lambda j=index: self.buy(j))
+            but_name.grid(row=r, column=1)
+            self.button_lst.append(but_name)
+
+            self.create_tooltip(key, entry, index - 1)
+
+            # makes count labels
+            key = tk.Label(self.frame_shop, width=21, text=str(PLAYER.inventory[key][0]))
+            key.grid(row=r, column=2)
+            self.count_list.append(key)
+
+            r += 1
+            index += 1
 
     def create_tooltip(self, key, entry, index):
         """
@@ -138,36 +158,39 @@ class GameWindow:
         :param choice:
         :return:
         """
+
         index = 1
+        buy_ct = self.var.get()
         # For every building possible...
         for key, building in PLAYER.inventory.items():
             # If the player bought one of these buildings...
             if choice == index:
                 # And if the player can afford it at it's current price...
-                if PLAYER.balance >= PLAYER.inventory[key][2]:
-                    # Take the cookies from the player
-                    PLAYER.balance -= PLAYER.inventory[key][2]
-                    # Give the player one building
-                    PLAYER.inventory[key][0] += 1
-                    # Raise the price of the next building
-                    PLAYER.inventory[key][2] *= 1.15
+                if PLAYER.balance >= building[2] * buy_ct:
+                    for i in range(0, buy_ct):
+                        # Take the cookies from the player
+                        PLAYER.balance -= building[2]
+                        # Give the player one building
+                        building[0] += 1
+                        # Raise the price of the next building
+                        building[2] *= 1.15
 
-                    # Update their balance
-                    self.bal_show.config(text="Balance: " + display_num(round(PLAYER.balance)))
-                    # Update the building's count list
-                    self.count_list[choice - 1].config(text=display_num(building[0]))
-                    # Update the building's price list
-                    self.price_list[choice - 1].config(text='$' +
-                                                       display_num(round(building[2])))
-                    # Recalculate and update the cps
-                    PLAYER.cps_update()
-                    self.cps_show.config(text="Clicks per Second (cps): " + display_num(PLAYER.cps))
+                        # Update their balance
+                        self.bal_show.config(text="Balance: " + display_num(round(PLAYER.balance)))
+                        # Update the building's count list
+                        self.count_list[choice - 1].config(text=display_num(building[0]))
+                        # Update the building's price list
+                        self.price_list[choice - 1].config(text='$' +
+                                                           display_num(round(building[2])))
+                        # Recalculate and update the cps
+                        PLAYER.cps_update()
+                        self.cps_show.config(text="Clicks per Second (cps): " + display_num(PLAYER.cps))
 
-                    # Update all the tooltips (for cps%)
-                    i = 0
-                    for name, entry in PLAYER.inventory.items():
-                        self.create_tooltip(name, entry, i)
-                        i += 1
+                        # Update all the tooltips (for cps%)
+                        i = 0
+                        for name, entry in PLAYER.inventory.items():
+                            self.create_tooltip(name, entry, i)
+                            i += 1
                     break
             index += 1
 
@@ -190,13 +213,9 @@ class GameWindow:
         # Repeat after 10ms
         self.bal_show.after(10, self.game_tick)
 
-
-
     # noinspection PyAttributeOutsideInit
     def stats_win(self):
         self.app = self.Stats(tk.Toplevel(self.master))
-
-
 
     class Stats:
         def __init__(self, master):
@@ -472,7 +491,14 @@ def display_num(num):
         :param num:
         :return:
         """
-        if 1 <= num / (1*10**6) < 1000:
+
+        if 1 <= num / (1*10**3) < 1000:
+            str_num = str(round(num, 2))
+            r_str_num = str_num[::-1]
+            o = r_str_num[:3] + "," + r_str_num[3:]
+            return o[::-1]
+
+        elif 1 <= num / (1*10**6) < 1000:
             return str(round(num/(1*10**6), 2)) + " million"
 
         elif 1 <= num / (1*10**9) < 1000:
@@ -483,6 +509,12 @@ def display_num(num):
 
         elif 1 <= num / (1*10**15) < 1000:
             return str(round(num/(1*10**15), 2)) + " quadrillion"
+
+        elif 1 <= num / (1*10**18) < 1000:
+            return str(round(num/(1*10**18), 2)) + " quintillion"
+
+        elif 1 <= num / (1*10**21) < 1000:
+            return str(round(num/(1*10**21), 2)) + " sextillion"
 
         else:
             return str(num)
