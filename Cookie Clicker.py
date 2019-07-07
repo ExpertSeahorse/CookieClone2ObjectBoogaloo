@@ -179,22 +179,22 @@ class GameWindow:
                         # Raise the price of the next building
                         building[2] *= 1.15
 
-                        # Update their balance
-                        self.bal_show.config(text="Balance: " + display_num(round(PLAYER.balance)))
-                        # Update the building's count list
-                        self.count_list[choice - 1].config(text=display_num(building[0]))
-                        # Update the building's price list
-                        self.price_list[choice - 1].config(text='$' +
-                                                           display_num(round(building[2])))
-                        # Recalculate and update the cps
-                        PLAYER.cps_update()
-                        self.cps_show.config(text="Clicks per Second (cps): " + display_num(PLAYER.cps))
+                    # Update their balance
+                    self.bal_show.config(text="Balance: " + display_num(round(PLAYER.balance)))
+                    # Update the building's count list
+                    self.count_list[choice - 1].config(text=display_num(building[0]))
+                    # Update the building's price list
+                    self.price_list[choice - 1].config(text='$' +
+                                                       display_num(round(building[2] * (1.15**(self.var.get()-1)))))
+                    # Recalculate and update the cps
+                    PLAYER.cps_update()
+                    self.cps_show.config(text="Clicks per Second (cps): " + display_num(PLAYER.cps))
 
-                        # Update all the tooltips (for cps%)
-                        i = 0
-                        for name, entry in PLAYER.inventory.items():
-                            self.create_tooltip(name, entry, i)
-                            i += 1
+                    # Update all the tooltips (for cps%)
+                    i = 0
+                    for name, entry in PLAYER.inventory.items():
+                        self.create_tooltip(name, entry, i)
+                        i += 1
                     break
             index += 1
 
@@ -392,7 +392,7 @@ class Player:
         print("Finished!")
 
 
-# I didn't create this class and therefore have only a working knowledge of how it works
+# I didn't create this class and therefore only understand how to use it
 # noinspection PyUnusedLocal,PyAttributeOutsideInit
 class CreateToolTip(object):
     """
@@ -480,38 +480,42 @@ def time_delta_display(sec):
         return ', '.join(result)
 
 def display_num(num):
-        """
-        Formats the numbers to include numbers after 1,000,000
-        :param num:
-        :return:
-        """
-
-        if 1 <= num / (1*10**3) < 1000:
-            str_num = str(round(num, 2))
-            r_str_num = str_num[::-1]
-            o = r_str_num[:3] + "," + r_str_num[3:]
-            return o[::-1]
-
-        elif 1 <= num / (1*10**6) < 1000:
-            return str(round(num/(1*10**6), 2)) + " million"
-
-        elif 1 <= num / (1*10**9) < 1000:
-            return str(round(num/(1*10**9), 2)) + " billion"
-
-        elif 1 <= num / (1*10**12) < 1000:
-            return str(round(num/(1*10**12), 2)) + " trillion"
-
-        elif 1 <= num / (1*10**15) < 1000:
-            return str(round(num/(1*10**15), 2)) + " quadrillion"
-
-        elif 1 <= num / (1*10**18) < 1000:
-            return str(round(num/(1*10**18), 2)) + " quintillion"
-
-        elif 1 <= num / (1*10**21) < 1000:
-            return str(round(num/(1*10**21), 2)) + " sextillion"
-
+    """
+    Formats the numbers to include numbers after 1,000,000
+    :param num:
+    :return:
+    """
+# TODO: Need to handle floats ending in .0 as well as .*
+    if 1 <= num / (1*10**3) < 1000:
+        str_num = str(int(num))
+        r_str_num = str_num[::-1]
+        if type(num) == float:
+            start_position = r_str_num.index(".")
         else:
-            return str(num)
+            start_position = 0
+        o = r_str_num[start_position:3] + "," + r_str_num[3:]
+        return o[::-1]
+
+    elif 1 <= num / (1*10**6) < 1000:
+        return str(round(num/(1*10**6), 2)) + " million"
+
+    elif 1 <= num / (1*10**9) < 1000:
+        return str(round(num/(1*10**9), 2)) + " billion"
+
+    elif 1 <= num / (1*10**12) < 1000:
+        return str(round(num/(1*10**12), 2)) + " trillion"
+
+    elif 1 <= num / (1*10**15) < 1000:
+        return str(round(num/(1*10**15), 2)) + " quadrillion"
+
+    elif 1 <= num / (1*10**18) < 1000:
+        return str(round(num/(1*10**18), 2)) + " quintillion"
+
+    elif 1 <= num / (1*10**21) < 1000:
+        return str(round(num/(1*10**21), 2)) + " sextillion"
+
+    else:
+        return str(num)
 
 if __name__ == '__main__':
     # STARTS THE GAME
