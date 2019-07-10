@@ -60,13 +60,13 @@ class GameWindow:
         self.var.set(1)
 
         radio_list = [("1x", 1),
-                     ("10x", 10),
-                     ("100x", 100)]
+                      ("10x", 10),
+                      ("100x", 100)]
         for name, val in radio_list:
             self.name = tk.Radiobutton(self.frame_mult, text=name, variable=self.var,
                                        value=val, indicatoron=0, width=5, command=self.create_shop)
             self.name.grid(row=0, column=i)
-            i +=1
+            i += 1
 
         self.count_list = []
         self.price_list = []
@@ -84,9 +84,9 @@ class GameWindow:
 
         # Creates Misc Buttons
         self.misc_list = (("Export Save", PLAYER.export_save, 0),
-                         ("Import Save", PLAYER.import_save, 1),
-                         ("Stats", self.stats_win, 2),
-                         (" ", None, 3))
+                          ("Import Save", PLAYER.import_save, 1),
+                          ("Stats", self.stats_win, 2),
+                          (" ", None, 3))
         for text, comm, c in self.misc_list:
             self.button = tk.Button(self.frame_misc, width=15, text=text, command=comm)
             self.button.grid(row=1, column=c)
@@ -104,7 +104,7 @@ class GameWindow:
             # makes price labels (for the displayed price: is the price x [1.15^(building mult number-1)]
             # The '...-1' is because the correct price is stored in the PLAYER.inv entry
             price_name = tk.Label(self.frame_shop, width=21,
-                                       text='$' + display_num(round(entry[2] * (1.15**(self.var.get()-1)))))
+                                  text='$' + display_num(round(entry[2] * (1.15**(self.var.get()-1)))))
             price_name.grid(row=r)
             self.price_list.append(price_name)
 
@@ -143,8 +143,9 @@ class GameWindow:
 
         # Creates the tooltip
         CreateToolTip(self.button_lst[index],
-                           "--Each " + label + " produces " + display_num(entry[1]) + " cookies per second\n" +
-                           "--" + display_num(entry[0]) + " " + label + "s producing " + display_num(build_cps) + " cookies per second (" + build_cps_ratio + "%)")
+                      "--Each " + label + " produces " + display_num(entry[1]) + " cookies per second\n" +
+                      "--" + display_num(entry[0]) + " " + label + "s producing " +
+                      display_num(build_cps) + " cookies per second (" + build_cps_ratio + "%)")
 
     def ck_click(self):
         """
@@ -178,7 +179,7 @@ class GameWindow:
                         building[0] += 1
                         # Raise the price of the next building
                         building[2] *= 1.15
-# TODO: Ensure the balance updates when a purchase is made for more than 1 building
+                    # TODO: Ensure the balance updates when a purchase is made for more than 1 building
                     # Update their balance
                     self.bal_show.config(text="Balance: " + display_num(round(PLAYER.balance)))
                     # Update the building's count list
@@ -221,6 +222,7 @@ class GameWindow:
     def stats_win(self):
         self.app = self.Stats(tk.Toplevel(self.master))
 
+    # noinspection PyUnresolvedReferences
     class Stats:
         def __init__(self, master):
             PLAYER.stats = {'balance': display_num(round(PLAYER.balance)),
@@ -255,6 +257,7 @@ class GameWindow:
 ########################################################################################################################
 
 
+# noinspection PyUnresolvedReferences
 class Player:
     def __init__(self):
         # Stores the balance in the bank
@@ -455,29 +458,30 @@ class CreateToolTip(object):
 
 
 def time_delta_display(sec):
-        # Conversion key
-        intervals = (('weeks', 604800),  # 60 * 60 * 24 * 7
-                     ('days', 86400),    # 60 * 60 * 24
-                     ('hours', 3600),    # 60 * 60
-                     ('minutes', 60),
-                     ('seconds', 1),)
-        result = []
-        # For each of the above categories...
-        for name, count in intervals:
-            # Divide the input number of seconds by the counter from the list
-            value = sec // count
-            # If that value is > 0...
-            if value:
-                # Subtract the whole number amount from the inputted number(we use the remainder in later iterations)
-                sec -= value * count
-                # If there is only 1 instance of the unit (1 week, 1 hour, ...)...
-                if value == 1:
-                    # Remove the 's' from the displayed name
-                    name = name.rstrip('s')
-                # Add the unit and amount to an array
-                result.append("{} {}".format(value, name))
-        # Return the array as a string
-        return ', '.join(result)
+    # Conversion key
+    intervals = (('weeks', 604800),  # 60 * 60 * 24 * 7
+                 ('days', 86400),    # 60 * 60 * 24
+                 ('hours', 3600),    # 60 * 60
+                 ('minutes', 60),
+                 ('seconds', 1),)
+    result = []
+    # For each of the above categories...
+    for name, count in intervals:
+        # Divide the input number of seconds by the counter from the list
+        value = sec // count
+        # If that value is > 0...
+        if value:
+            # Subtract the whole number amount from the inputted number(we use the remainder in later iterations)
+            sec -= value * count
+            # If there is only 1 instance of the unit (1 week, 1 hour, ...)...
+            if value == 1:
+                # Remove the 's' from the displayed name
+                name = name.rstrip('s')
+            # Add the unit and amount to an array
+            result.append("{} {}".format(value, name))
+    # Return the array as a string
+    return ', '.join(result)
+
 
 def display_num(num):
     """
@@ -515,6 +519,7 @@ def display_num(num):
 
     else:
         return str(num)
+
 
 if __name__ == '__main__':
     # STARTS THE GAME
