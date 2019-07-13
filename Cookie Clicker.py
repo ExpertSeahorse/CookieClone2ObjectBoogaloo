@@ -167,35 +167,33 @@ class GameWindow:
         buy_ct = self.var.get()
         # For every building possible...
         for key, building in PLAYER.inventory.items():
-            # If the player bought one of these buildings...
-            if choice == index:
-                # And if the player can afford it at it's current price...
-                if PLAYER.balance >= building[2] * buy_ct:
-                    for i in range(0, buy_ct):
-                        # Take the cookies from the player
-                        PLAYER.balance -= building[2]
-                        # Give the player one building
-                        building[0] += 1
-                        # Raise the price of the next building
-                        building[2] *= 1.15
+            # If the player bought one of these buildings and if the player can afford it at it's current price...
+            if choice == index and PLAYER.balance >= building[2] * buy_ct:
+                for i in range(0, buy_ct):
+                    # Take the cookies from the player
+                    PLAYER.balance -= building[2]
+                    # Give the player one building
+                    building[0] += 1
+                    # Raise the price of the next building
+                    building[2] *= 1.15
 # TODO: Ensure the balance updates when a purchase is made for more than 1 building
-                    # Update their balance
-                    self.bal_show.config(text="Balance: " + display_num(round(PLAYER.balance)))
-                    # Update the building's count list
-                    self.count_list[choice - 1].config(text=display_num(building[0]))
-                    # Update the building's price list
-                    self.price_list[choice - 1].config(text='$' +
-                                                       display_num(round(building[2] * (1.15**(buy_ct-1)))))
-                    # Recalculate and update the cps
-                    PLAYER.cps_update()
-                    self.cps_show.config(text="Clicks per Second (cps): " + display_num(PLAYER.cps))
+                # Update their balance
+                self.bal_show.config(text="Balance: " + display_num(round(PLAYER.balance)))
+                # Update the building's count list
+                self.count_list[choice - 1].config(text=display_num(building[0]))
+                # Update the building's price list
+                self.price_list[choice - 1].config(text='$' +
+                                                   display_num(round(building[2] * (1.15**(buy_ct-1)))))
+                # Recalculate and update the cps
+                PLAYER.cps_update()
+                self.cps_show.config(text="Clicks per Second (cps): " + display_num(PLAYER.cps))
 
-                    # Update all the tooltips (for cps%)
-                    i = 0
-                    for name, entry in PLAYER.inventory.items():
-                        self.create_tooltip(name, entry, i)
-                        i += 1
-                    break
+                # Update all the tooltips (for cps%)
+                i = 0
+                for name, entry in PLAYER.inventory.items():
+                    self.create_tooltip(name, entry, i)
+                    i += 1
+                break
             index += 1
 
     def game_tick(self):
