@@ -2,6 +2,7 @@ import tkinter as tk
 import json
 from time import time
 from os import path
+from Packages import time_delta_display, display_num
 # TODO: Add upgrades
 # TODO: Add restarting incentive (Ascend)
 # TODO: Add scrollbar for smaller screens
@@ -455,77 +456,6 @@ class CreateToolTip(object):
         self.tw = None
         if tw:
             tw.destroy()
-
-
-def time_delta_display(sec):
-    """
-    Converts a number of seconds into a string of how many weeks, days, etc it represents
-    :param sec:
-    :return:
-    """
-    # Conversion key
-    intervals = (('years', 31536000),   # 60 * 60 * 24 * 365
-                 ('months', 2628288),   # 60 * 60 * 24 * 30.42     (30.42 is the avg number of days in a month)
-                 ('weeks', 604800),     # 60 * 60 * 24 * 7
-                 ('days', 86400),       # 60 * 60 * 24
-                 ('hours', 3600),       # 60 * 60
-                 ('minutes', 60),
-                 ('seconds', 1),)
-    result = []
-    # For each of the above categories...
-    for name, count in intervals:
-        # Divide the input number of seconds by the counter from the list
-        value = sec // count
-        # If that value is > 0...
-        if value:
-            # Subtract the whole number amount from the inputted number (we use the remainder in later iterations)
-            sec -= value * count
-            # If there is only 1 instance of the unit (1 week, 1 hour, ...)...
-            if value == 1:
-                # Remove the 's' from the displayed name
-                name = name.rstrip('s')
-            # Add the unit and amount to an array
-            result.append("{} {}".format(value, name))
-    # Return the array as a string
-    return ', '.join(result)
-
-
-def display_num(num):
-    """
-    Formats numbers to use the format ###.## <Name> after 1,000,000 > 1.00 million
-    :param num:
-    :return:
-    """
-    if 1 <= num / (1*10**3) < 1000:
-        str_num = str(round(num, 2))
-        r_str_num = str_num[::-1]
-        if '.' in r_str_num:
-            start_position = r_str_num.index(".")
-        else:
-            start_position = -1
-        o = r_str_num[:start_position + 4] + "," + r_str_num[start_position + 4:]
-        return o[::-1]
-
-    elif 1 <= num / (1*10**6) < 1000:
-        return str(round(num/(1*10**6), 2)) + " million"
-
-    elif 1 <= num / (1*10**9) < 1000:
-        return str(round(num/(1*10**9), 2)) + " billion"
-
-    elif 1 <= num / (1*10**12) < 1000:
-        return str(round(num/(1*10**12), 2)) + " trillion"
-
-    elif 1 <= num / (1*10**15) < 1000:
-        return str(round(num/(1*10**15), 2)) + " quadrillion"
-
-    elif 1 <= num / (1*10**18) < 1000:
-        return str(round(num/(1*10**18), 2)) + " quintillion"
-
-    elif 1 <= num / (1*10**21) < 1000:
-        return str(round(num/(1*10**21), 2)) + " sextillion"
-
-    else:
-        return str(num)
 
 
 if __name__ == '__main__':
