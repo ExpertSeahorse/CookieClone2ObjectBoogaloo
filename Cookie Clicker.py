@@ -458,10 +458,17 @@ class CreateToolTip(object):
 
 
 def time_delta_display(sec):
+    """
+    Converts a number of seconds into a string of how many weeks, days, etc it represents
+    :param sec:
+    :return:
+    """
     # Conversion key
-    intervals = (('weeks', 604800),  # 60 * 60 * 24 * 7
-                 ('days', 86400),    # 60 * 60 * 24
-                 ('hours', 3600),    # 60 * 60
+    intervals = (('years', 31536000),   # 60 * 60 * 24 * 365
+                 ('months', 2628288),   # 60 * 60 * 24 * 30.42     (30.42 is the avg number of days in a month)
+                 ('weeks', 604800),     # 60 * 60 * 24 * 7
+                 ('days', 86400),       # 60 * 60 * 24
+                 ('hours', 3600),       # 60 * 60
                  ('minutes', 60),
                  ('seconds', 1),)
     result = []
@@ -471,7 +478,7 @@ def time_delta_display(sec):
         value = sec // count
         # If that value is > 0...
         if value:
-            # Subtract the whole number amount from the inputted number(we use the remainder in later iterations)
+            # Subtract the whole number amount from the inputted number (we use the remainder in later iterations)
             sec -= value * count
             # If there is only 1 instance of the unit (1 week, 1 hour, ...)...
             if value == 1:
@@ -485,7 +492,7 @@ def time_delta_display(sec):
 
 def display_num(num):
     """
-    Formats the numbers to include numbers after 1,000,000
+    Formats numbers to use the format ###.## <Name> after 1,000,000 > 1.00 million
     :param num:
     :return:
     """
