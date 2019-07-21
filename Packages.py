@@ -128,7 +128,10 @@ def display_num(num):
     :param num:
     :return:
     """
-    if 1 <= num / (1 * 10 ** 3) < 1000:
+    if num < 1000:
+        return str(num)
+
+    elif 1 <= num / (1 * 10 ** 3) < 1000:
         str_num = str(round(num, 2))
         r_str_num = str_num[::-1]
         if '.' in r_str_num:
