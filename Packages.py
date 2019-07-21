@@ -1,5 +1,3 @@
-import re
-import pandas
 from smtplib import SMTP
 
 
@@ -31,6 +29,7 @@ def int_input():
 
 
 def expression_converter(expr):
+    import re
     """
     Replaces #(, )#, #x, x#, and ^ with the equivalent in python
     :param expr:
@@ -58,6 +57,7 @@ def expression_converter(expr):
 
 
 def database(arr, titles=False):
+    import pandas
     """
     Creates a Pandas Database for use in graphing; akin to the stats button on a TI-84 Calculator
     Also used to transform an array into a DB for graphing

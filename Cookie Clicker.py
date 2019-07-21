@@ -3,6 +3,7 @@ import json
 from time import time
 from os import path
 from Packages import time_delta_display, display_num
+from TkinterPackages import CreateToolTip
 # TODO: Add upgrades
 # TODO: Add restarting incentive (Ascend)
 # TODO: Add scrollbar for smaller screens
@@ -11,6 +12,9 @@ from Packages import time_delta_display, display_num
 
 
 class GameWindow:
+    """
+    Displays the information from the Player object
+    """
     def __init__(self, master):
         self.master = root
         self.master.title("Cookie Clicker")
@@ -72,6 +76,7 @@ class GameWindow:
         self.count_list = []
         self.price_list = []
         self.button_lst = []
+        self.tooltp_lst = []
         self.create_shop()
 ########################################################################################################################
 
@@ -97,6 +102,9 @@ class GameWindow:
         Creates the entire shop: Prices, Buy buttons, & Quantity numbers based on PLAYER.inventory
         :return:
         """
+        self.price_list = []
+        self.button_lst = []
+        self.count_list = []
         index = 1
         r = 3
         for key, entry in PLAYER.inventory.items():
@@ -114,6 +122,7 @@ class GameWindow:
             but_name.grid(row=r, column=1)
             self.button_lst.append(but_name)
 
+            # makes the rollover tooltips
             self.create_tooltip(key, entry, index - 1)
 
             # makes count labels
@@ -158,6 +167,22 @@ class GameWindow:
         PLAYER.handmade += 1
         self.bal_show.config(text="Balance: " + str(display_num(round(PLAYER.balance))))
 
+    def update_shop(self):
+        buy_ct = self.var.get()
+        i = 0
+        for key, entry in PLAYER.inventory.items():
+            self.count_list[i].config(text=str(PLAYER.inventory[key][0]))
+            self.price_list[i].config(text='$' +
+                                           display_num(round(entry[2] * (1.15**(buy_ct-1)))))
+            self.create_tooltip(key, entry, i)
+
+        # Update their balance
+        self.bal_show.config(text="Balance: " + display_num(round(PLAYER.balance)))
+
+        # Recalculate and update the cps
+        PLAYER.cps_update()
+        self.cps_show.config(text="Clicks per Second (cps): " + display_num(PLAYER.cps))
+
     def buy(self, choice):
         """
         Runs the backend for purchasing buildings
@@ -182,12 +207,14 @@ class GameWindow:
                         building[2] *= 1.15
                     # TODO: Ensure the balance updates when a purchase is made for more than 1 building
                     # Update their balance
-                    self.bal_show.config(text="Balance: " + display_num(round(PLAYER.balance)))
+                    bal = display_num(round(PLAYER.balance))
+                    self.bal_show.config(text="Balance: " + bal)
                     # Update the building's count list
-                    self.count_list[choice - 1].config(text=display_num(building[0]))
+                    ct = display_num(building[0])
+                    self.count_list[choice - 1].config(text=ct)
                     # Update the building's price list
-                    self.price_list[choice - 1].config(text='$' +
-                                                       display_num(round(building[2] * (1.15**(buy_ct-1)))))
+                    price = '$' + display_num(round(building[2] * (1.15**(buy_ct-1))))
+                    self.price_list[choice - 1].config(text=price)
                     # Recalculate and update the cps
                     PLAYER.cps_update()
                     self.cps_show.config(text="Clicks per Second (cps): " + display_num(PLAYER.cps))
@@ -260,6 +287,10 @@ class GameWindow:
 
 # noinspection PyUnresolvedReferences
 class Player:
+    """
+    Handles all components of the game related to what the player owns
+    Ex. Inventory, balance, stats, importing and exporting the previous, etc
+    """
     def __init__(self):
         # Stores the balance in the bank
         self.balance = 0
@@ -394,68 +425,6 @@ class Player:
         # Updates the cps label
         GAME.cps_show.config(text="Clicks per Second (cps): " + display_num(round(self.cps, 1)))
         print("Finished!")
-
-
-# I didn't create this class and therefore only understand how to use it
-# noinspection PyUnusedLocal,PyAttributeOutsideInit
-class CreateToolTip(object):
-    """
-    tk_ToolTip_class101.py
-    gives a Tkinter widget a tooltip as the mouse is above the widget
-    tested with Python27 and Python34  by  vegaseat  09sep2014
-    www.daniweb.com/programming/software-development/code/484591/a-tooltip-class-for-tkinter
-
-    Modified to include a delay time by Victor Zaccardo, 25mar16
-    """
-
-    def __init__(self, widget, text='widget info'):
-        self.wait_time = 300  # milliseconds
-        self.wrap_length = 400  # pixels
-        self.widget = widget
-        self.text = text
-        self.widget.bind("<Enter>", self.enter)
-        self.widget.bind("<Leave>", self.leave)
-        self.widget.bind("<ButtonPress>", self.leave)
-        self.id_ = None
-        self.tw = None
-
-    def enter(self, event=None):
-        self.schedule()
-
-    def leave(self, event=None):
-        self.unschedule()
-        self.hidetip()
-
-    def schedule(self):
-        self.unschedule()
-        self.id_ = self.widget.after(self.wait_time, self.showtip)
-
-    def unschedule(self):
-        id_ = self.id_
-        self.id_ = None
-        if id_:
-            self.widget.after_cancel(id_)
-
-    def showtip(self, event=None):
-        x = y = 0
-        x, y, cx, cy = self.widget.bbox("insert")
-        x += self.widget.winfo_rootx() + 25
-        y += self.widget.winfo_rooty() + 20
-        # creates a toplevel window
-        self.tw = tk.Toplevel(self.widget)
-        # Leaves only the label and removes the app window
-        self.tw.wm_overrideredirect(True)
-        self.tw.wm_geometry("+%d+%d" % (x, y))
-        self.label = tk.Label(self.tw, text=self.text, justify='left',
-                              background="#ffffff", relief='solid', borderwidth=1,
-                              wraplength=self.wrap_length)
-        self.label.pack(ipadx=1)
-
-    def hidetip(self):
-        tw = self.tw
-        self.tw = None
-        if tw:
-            tw.destroy()
 
 
 if __name__ == '__main__':
