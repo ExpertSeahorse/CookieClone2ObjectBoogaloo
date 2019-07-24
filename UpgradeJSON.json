@@ -1,0 +1,1762 @@
+[
+  {
+    "effect": 2,
+    "target": "auto_clicker",
+    "condition": 1,
+    "count": 0,
+    "current_price": 100,
+    "name": "Reinforced index finger"
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  },
+  {
+    "effect": 0,
+    "target": "",
+    "condition": 0,
+    "count": 0,
+    "current_price": 0,
+    "name": 0
+  }
+]

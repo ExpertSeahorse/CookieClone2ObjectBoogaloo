@@ -428,20 +428,44 @@ class Player:
 
 class Thing:
     def __init__(self, name, current_price, count):
+        """
+        Parent class for buildings and upgrades
+        :param name:
+        :param current_price:
+        :param count:
+        """
         self.count = count
         self.current_price = current_price
         self.name = name
 
 
 class Upgrade(Thing):
-    def __init__(self, name='', effect=0, target='', current_price=0, count=0):
+    def __init__(self, name='', effect=0, target='', condition=0, current_price=0, count=0):
+        """
+        Creates an upgrade object
+        :param name:
+        :param effect:
+        :param target:
+        :param condition:
+        :param current_price:
+        :param count:
+        """
         self.effect = effect
         self.target = target
+        self.condition = condition
         super().__init__(name, current_price, count)
 
 
 class Building(Thing):
     def __init__(self, name='', cps=0, current_price=0, count=0, base_price=0):
+        """
+        Creates a building object
+        :param name:
+        :param cps:
+        :param current_price:
+        :param count:
+        :param base_price:
+        """
         self.cps = cps
         self.base_price = base_price
         super().__init__(name, current_price, count)
@@ -458,12 +482,11 @@ if __name__ == '__main__':
         PLAYER.import_save()
     root.mainloop()
 
+# TODO: Fill out upgrades JSON :(
+
 """
 Notes:
 Upgrades:
     --Upgrades will need to be a list of objects that have an effect and a price
     --Buildings will need a multiplier category for these to go into effect
-Multi-Purchases:
-    --Use 3 radio buttons that all fit into one grid cell, formatted to look like real buttons
-    --Import their value into the buy to determine amount purchased
 """
