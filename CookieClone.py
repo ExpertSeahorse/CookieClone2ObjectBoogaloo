@@ -4,7 +4,11 @@ from time import time
 from os import path
 from Packages import time_delta_display, display_num
 from TkinterPackages import CreateToolTip
-# TODO: Add upgrades
+# TODO: Add upgrades shop
+# TODO: Add upgrades buy function
+# TODO: Figure out and implement how to add the special cursor effects
+# TODO: Add non-building upgrades
+
 # TODO: Add restarting incentive (Ascend)
 # TODO: Add scrollbar for smaller screens
 # TODO: Achievements
@@ -118,7 +122,7 @@ class GameWindow:
             self.price_list.append(price_name)
 
             # makes purchase buttons
-            but_name = tk.Button(self.frame_shop, text=label, width=20, command=lambda j=index: self.buy(j))
+            but_name = tk.Button(self.frame_shop, text=label, width=20, command=lambda j=index: self.buy_building(j))
             but_name.grid(row=r, column=1)
             self.button_lst.append(but_name)
 
@@ -167,7 +171,7 @@ class GameWindow:
         PLAYER.handmade += 1
         self.bal_show.config(text="Balance: " + str(display_num(round(PLAYER.balance))))
 
-    def buy(self, choice):
+    def buy_building(self, choice):
         """
         Runs the backend for purchasing buildings
         :param choice:
@@ -297,7 +301,7 @@ class Player:
             ('alchemy lab', 1.6*10**6, 7.5*10**10),
             ('portal', 1*10**7, 1*10**12),
             ('time machine', 6.5*10**7, 1.4*10**13),
-            ('anti-matter condenser', 4.3*10**8, 1.7*10**14),
+            ('antimatter condenser', 4.3*10**8, 1.7*10**14),
             ('prism', 2.9*10**9, 2.1*10**15),
             ('chance maker', 2.1*10**10, 2.6*10**16),
             ('fractal engine', 1.5*10**11, 3.1*10**17)
@@ -440,7 +444,7 @@ class Thing:
 
 
 class Upgrade(Thing):
-    def __init__(self, name='', effect=0, target='', condition=0, current_price=0, count=0):
+    def __init__(self, name='', effect=0, target='', condition=0, current_price=0, description="", count=0):
         """
         Creates an upgrade object
         :param name:
@@ -448,16 +452,21 @@ class Upgrade(Thing):
         :param target:
         :param condition:
         :param current_price:
+        :param description:
         :param count:
         """
         self.effect = effect
         self.target = target
         self.condition = condition
+        self.description = description
         super().__init__(name, current_price, count)
+
+    def __str__(self):
+        return "Name: " + self.name + "\t\t\tEffect: " + str(self.effect) + "\t\t\tPrice: " + str(self.current_price)
 
 
 class Building(Thing):
-    def __init__(self, name='', cps=0, current_price=0, count=0, base_price=0):
+    def __init__(self, name='', cps=0, current_price=0, count=0, upgraded=1, base_price=0):
         """
         Creates a building object
         :param name:
@@ -468,6 +477,7 @@ class Building(Thing):
         """
         self.cps = cps
         self.base_price = base_price
+        self.upgrade_total = upgraded
         super().__init__(name, current_price, count)
 
 
@@ -482,11 +492,10 @@ if __name__ == '__main__':
         PLAYER.import_save()
     root.mainloop()
 
-# TODO: Fill out upgrades JSON :(
 
 """
 Notes:
 Upgrades:
     --Upgrades will need to be a list of objects that have an effect and a price
-    --Buildings will need a multiplier category for these to go into effect
+    --Buildings will need a multiplier category for these to go into effect, with 
 """

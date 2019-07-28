@@ -1,7 +1,9 @@
+import re
+import pandas
 from smtplib import SMTP
 
 
-# 07/20/2019
+# 07/28/2019
 
 
 def float_input():
@@ -29,7 +31,6 @@ def int_input():
 
 
 def expression_converter(expr):
-    import re
     """
     Replaces #(, )#, #x, x#, and ^ with the equivalent in python
     :param expr:
@@ -57,7 +58,6 @@ def expression_converter(expr):
 
 
 def database(arr, titles=False):
-    import pandas
     """
     Creates a Pandas Database for use in graphing; akin to the stats button on a TI-84 Calculator
     Also used to transform an array into a DB for graphing
@@ -128,39 +128,121 @@ def display_num(num):
     :param num:
     :return:
     """
-    if num < 1000:
-        return str(num)
+    name_bank = ['million',
+                 'billion',
+                 'trillion',
+                 'quadrillion',
+                 'quintillion',
+                 'sextillion',
+                 'septillion',
+                 'octillion',
+                 'nonillion',
+                 'decillion',
+                 'undecillion',
+                 'duodecillion',
+                 'tredecillion']
 
-    elif 1 <= num / (1 * 10 ** 3) < 1000:
+    # if the number is in the thousands...
+    if 1 <= num / (1 * 10 ** 3) < 1000:
+
+        # The num is converted to a string and rounded to the .01
         str_num = str(round(num, 2))
+        # The string is reversed
         r_str_num = str_num[::-1]
+
+        # If the number was has a decimal...
         if '.' in r_str_num:
+            # Start from the decimal when counting for the comma
             start_position = r_str_num.index(".")
         else:
+            # Otherwise start from -1 (Needed later)
             start_position = -1
+
+        # The new number is the last 3 digits (starting from -1) then a comma then the rest of the number
         o = r_str_num[:start_position + 4] + "," + r_str_num[start_position + 4:]
+        # Unreverse the number and return it
         return o[::-1]
 
-    elif 1 <= num / (1 * 10 ** 6) < 1000:
-        return str(round(num / (1 * 10 ** 6), 2)) + " million"
+    # If the string is in the millions +...
+    else:
+        for i, word in name_bank:
+            # The power associated with the word is: ex. trillion == 1*10**12
+            power = 6 + (3 * i)
+            # if the number falls within the power for the word...
+            if 1 <= num / 1*10**power < 1000:
+                # Return the number rounded to the .01 and the word (ex. 1,550,000,000 == 1.55 billion)
+                return str(round(num / (1 * 10 ** power), 2)) + " " + word
 
-    elif 1 <= num / (1 * 10 ** 9) < 1000:
-        return str(round(num / (1 * 10 ** 9), 2)) + " billion"
+        # If the number hasn't been added yet, return it as a string
+        return str(num)
 
-    elif 1 <= num / (1 * 10 ** 12) < 1000:
-        return str(round(num / (1 * 10 ** 12), 2)) + " trillion"
 
-    elif 1 <= num / (1 * 10 ** 15) < 1000:
-        return str(round(num / (1 * 10 ** 15), 2)) + " quadrillion"
-
-    elif 1 <= num / (1 * 10 ** 18) < 1000:
-        return str(round(num / (1 * 10 ** 18), 2)) + " quintillion"
-
-    elif 1 <= num / (1 * 10 ** 21) < 1000:
-        return str(round(num / (1 * 10 ** 21), 2)) + " sextillion"
+def undisplay_num(num):
+    """
+    Unformats a number created by display num
+    :type num: str
+    :param num:
+    :return:
+    """
+    num = num.lower()
+    name_bank = ['million',
+                 'billion',
+                 'trillion',
+                 'quadrillion',
+                 'quintillion',
+                 'sextillion',
+                 'septillion',
+                 'octillion',
+                 'nonillion',
+                 'decillion',
+                 'undecillion',
+                 'duodecillion',
+                 'tredecillion']
+    # If the number has a comma in it... (ex. 1,000)
+    if ',' in num:
+        # Remove the comma and return it as a float
+        return float(num.replace(',', '').strip())
 
     else:
-        return str(num)
+        for i, word in enumerate(name_bank):
+            # if the word is in the number...
+            if ' ' + word in num:
+                # Return the number * 10**word (ex. 1.55 trillion == 1.55 * 10**12)
+                return float(num.replace(word, '').strip()) * 10**(6 + (3*i))
+
+        # If the number hasn't been added, try to return as a float
+        return float(num)
+
+
+def float_extract(s):
+    """
+    Gets all numbers from a string, including only decimals in the number, not at the end of words
+    :param s:
+    :return:
+    """
+    l = []
+    in_num = False
+    # For every character in the string...
+    for i, char in enumerate(s):
+
+        # If the char is the first digit in a number, add it and start considering the string like a number
+        if char.isdigit():
+            l.append(char)
+            in_num = True
+
+        # Add the . if in a current number
+        elif in_num and char == '.':
+            l.append(char)
+
+        # If the character is not a . not a digit and at the end of a current number, end the number
+        elif char != '.' and not char.isdigit() and in_num:
+            in_num = False
+
+            # If the sentence ended with the number, remove the last period
+            if char == ' ' and s[i-1] == '.':
+                l.pop()
+    # Return the float of the collected digits put together
+    return float(''.join(l))
 
 
 def send_sms(message, number='813-352-2669', carrier='verizon'):
@@ -248,6 +330,7 @@ def string_chunker(strin, char_num):
 
 
 if __name__ == '__main__':
+    print(undisplay_num('1 million'))
     """
     for x in dns.resolver.query('gmail.com', 'MX'):
         print(x.to_text())
