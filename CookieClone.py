@@ -115,9 +115,10 @@ class GameWindow:
 
             # makes price labels (for the displayed price: is the price x [1.15^(building mult number-1)]
             # The '...-1' is because the correct price is stored in the PLAYER.inv entry
+            p = self.buy_ct_calculator(building.base_price, building.count)
             price_name = tk.Label(self.frame_shop, width=21,
                                   text='$' +
-                                       display_num(round(self.buy_ct_calculator(building.base_price, building.count))))
+                                       display_num(round(p)))
             price_name.grid(row=r)
             self.price_list.append(price_name)
 
@@ -189,6 +190,7 @@ class GameWindow:
                 # Give the player one building
                 building.count += 1
                 # Raise the price of the next building
+                # TODO: Debug why this depletes te player's money
                 building.current_price = self.buy_ct_calculator(building.base_price, building.count)
             # Update their balance
             bal = display_num(round(PLAYER.balance))
@@ -466,7 +468,7 @@ class Upgrade(Thing):
 
 
 class Building(Thing):
-    def __init__(self, name='', cps=0, current_price=0, count=0, upgraded=1, base_price=0):
+    def __init__(self, name='', cps=0, current_price=0, count=0, upgrade_total=1, base_price=0):
         """
         Creates a building object
         :param name:
@@ -477,7 +479,7 @@ class Building(Thing):
         """
         self.cps = cps
         self.base_price = base_price
-        self.upgrade_total = upgraded
+        self.upgrade_total = upgrade_total
         super().__init__(name, current_price, count)
 
 

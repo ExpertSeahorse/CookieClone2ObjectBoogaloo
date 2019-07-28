@@ -142,8 +142,10 @@ def display_num(num):
                  'duodecillion',
                  'tredecillion']
 
+    if -1000< num < 1000:
+        return str(num)
     # if the number is in the thousands...
-    if 1 <= num / (1 * 10 ** 3) < 1000:
+    elif 1 <= abs(num / (1 * 10 ** 3)) < 1000:
 
         # The num is converted to a string and rounded to the .01
         str_num = str(round(num, 2))
@@ -165,11 +167,11 @@ def display_num(num):
 
     # If the string is in the millions +...
     else:
-        for i, word in name_bank:
+        for i, word in enumerate(name_bank):
             # The power associated with the word is: ex. trillion == 1*10**12
             power = 6 + (3 * i)
             # if the number falls within the power for the word...
-            if 1 <= num / 1*10**power < 1000:
+            if 1 <= abs(num / (1*10**power)) < 1000:
                 # Return the number rounded to the .01 and the word (ex. 1,550,000,000 == 1.55 billion)
                 return str(round(num / (1 * 10 ** power), 2)) + " " + word
 
@@ -330,7 +332,6 @@ def string_chunker(strin, char_num):
 
 
 if __name__ == '__main__':
-    print(undisplay_num('1 million'))
     """
     for x in dns.resolver.query('gmail.com', 'MX'):
         print(x.to_text())
