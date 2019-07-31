@@ -4,6 +4,7 @@ from time import time
 from os import path
 from Packages import time_delta_display, display_num
 from TkinterPackages import CreateToolTip
+# TODO: Make buttons disappear until the player can afford them
 # TODO: Add upgrades shop
 # TODO: Add upgrades buy function
 # TODO: Figure out and implement how to add the special cursor effects
@@ -64,23 +65,21 @@ class GameWindow:
         self.frame_mult.grid(row=2, column=1)
 
         # Creates buy multipliers
-        i = 0
         self.var = tk.IntVar()
         self.var.set(1)
 
         radio_list = [("1x", 1),
                       ("10x", 10),
                       ("100x", 100)]
-        for name, val in radio_list:
+        for i, (name, val) in enumerate(radio_list):
             self.name = tk.Radiobutton(self.frame_mult, text=name, variable=self.var,
                                        value=val, indicatoron=0, width=5, command=self.update_shop)
             self.name.grid(row=0, column=i)
-            i += 1
 
         self.count_list = []
         self.price_list = []
         self.button_lst = []
-        self.tooltp_lst = []
+        # self.tooltp_lst = []
         self.create_shop()
 ########################################################################################################################
 
@@ -123,9 +122,9 @@ class GameWindow:
         self.button_lst = []
         self.count_list = []
         index = 1
-        for building in PLAYER.inventory:
+        for i, building in enumerate(PLAYER.inventory, 1):
             label = building.name.lower().capitalize()
-            r = index + 2
+            r = i + 2
 
             # makes price labels
             price_name = tk.Label(self.frame_shop, width=21,
@@ -145,8 +144,6 @@ class GameWindow:
             key = tk.Label(self.frame_shop, width=21, text=str(building.count))
             key.grid(row=r, column=2)
             self.count_list.append(key)
-
-            index += 1
 
     def create_tooltip(self, name, building, index):
         """
@@ -213,10 +210,8 @@ class GameWindow:
             self.cps_show.config(text="Clicks per Second (cps): " + display_num(round(PLAYER.cps, 1)))
 
             # Update all the tooltips (for cps%)
-            i = 0
-            for entry in PLAYER.inventory:
+            for i, entry in enumerate(PLAYER.inventory):
                 self.create_tooltip(entry.name, entry, i)
-                i += 1
 
     def game_tick(self):
         """
@@ -270,8 +265,7 @@ class GameWindow:
             self.label = tk.Label(master, text="################# Stats #################")
             self.label.grid(columnspan=2)
 
-            r = 1
-            for key in PLAYER.stats:
+            for r, key in enumerate(PLAYER.stats, 1):
                 if key == 'inventory' or key == 'pause_time':
                     continue
                 if key == 'init_time':
@@ -285,7 +279,6 @@ class GameWindow:
                 self.key.grid(row=r)
                 self.info = tk.Label(master, text=PLAYER.stats[key])
                 self.info.grid(row=r, column=1)
-                r += 1
 
 
 ########################################################################################################################
