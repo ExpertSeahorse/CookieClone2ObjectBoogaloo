@@ -3,6 +3,7 @@
     "effect": 2,
     "target": "auto clicker",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 100.0,
     "name": "Reinforced index finger"
@@ -11,6 +12,7 @@
     "effect": 2,
     "target": "auto clicker",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 500.0,
     "name": "Carpal tunnel prevention cream"
@@ -19,6 +21,7 @@
     "effect": 2,
     "target": "auto clicker",
     "condition": 10,
+    "description": 0,
     "count": 0,
     "current_price": 10000.0,
     "name": "Ambidextrous"
@@ -27,6 +30,7 @@
     "effect": 0.1,
     "target": "auto clicker",
     "condition": 25,
+    "description": 0,
     "count": 0,
     "current_price": 100000.0,
     "name": "Thousand fingers"
@@ -35,6 +39,7 @@
     "effect": 0.5,
     "target": "auto clicker",
     "condition": 50,
+    "description": 0,
     "count": 0,
     "current_price": 10000000.0,
     "name": "Million fingers"
@@ -43,6 +48,7 @@
     "effect": 5.0,
     "target": "auto clicker",
     "condition": 100,
+    "description": 0,
     "count": 0,
     "current_price": 100000000.0,
     "name": "Billion fingers"
@@ -51,6 +57,7 @@
     "effect": 50.0,
     "target": "auto clicker",
     "condition": 150,
+    "description": 0,
     "count": 0,
     "current_price": 1000000000.0,
     "name": "Trillion fingers"
@@ -59,6 +66,7 @@
     "effect": 500.0,
     "target": "auto clicker",
     "condition": 200,
+    "description": 0,
     "count": 0,
     "current_price": 10000000000.0,
     "name": "Quadrillion fingers"
@@ -67,6 +75,7 @@
     "effect": 5000.0,
     "target": "auto clicker",
     "condition": 250,
+    "description": 0,
     "count": 0,
     "current_price": 10000000000000.0,
     "name": "Quintillion fingers"
@@ -75,6 +84,7 @@
     "effect": 50000.0,
     "target": "auto clicker",
     "condition": 300,
+    "description": 0,
     "count": 0,
     "current_price": 1e+16,
     "name": "Sextillion fingers"
@@ -83,6 +93,7 @@
     "effect": 500000.0,
     "target": "auto clicker",
     "condition": 350,
+    "description": 0,
     "count": 0,
     "current_price": 1e+19,
     "name": "Septillion fingers"
@@ -91,6 +102,7 @@
     "effect": 5.0,
     "target": "auto clicker",
     "condition": 400,
+    "description": 0,
     "count": 0,
     "current_price": 1e+22,
     "name": "Octillion fingers"
@@ -99,6 +111,7 @@
     "effect": 2,
     "target": "grandma",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 1000.0,
     "name": "Forwards from grandma"
@@ -107,6 +120,7 @@
     "effect": 2,
     "target": "grandma",
     "condition": 5,
+    "description": 0,
     "count": 0,
     "current_price": 5000.0,
     "name": "Steel-plated rolling pins"
@@ -115,6 +129,7 @@
     "effect": 2,
     "target": "grandma",
     "condition": 25,
+    "description": 0,
     "count": 0,
     "current_price": 50000.0,
     "name": "Lubricated dentures"
@@ -123,6 +138,7 @@
     "effect": 2,
     "target": "grandma",
     "condition": 50,
+    "description": 0,
     "count": 0,
     "current_price": 5000000.0,
     "name": "Prune juice"
@@ -131,6 +147,7 @@
     "effect": 2,
     "target": "grandma",
     "condition": 100,
+    "description": 0,
     "count": 0,
     "current_price": 500000000.0,
     "name": "Double-thick glasses"
@@ -139,6 +156,7 @@
     "effect": 2,
     "target": "grandma",
     "condition": 150,
+    "description": 0,
     "count": 0,
     "current_price": 50000000000.0,
     "name": "Aging agents"
@@ -147,6 +165,7 @@
     "effect": 2,
     "target": "grandma",
     "condition": 200,
+    "description": 0,
     "count": 0,
     "current_price": 50000000000000.0,
     "name": "Xtreme walkers"
@@ -155,6 +174,7 @@
     "effect": 2,
     "target": "grandma",
     "condition": 250,
+    "description": 0,
     "count": 0,
     "current_price": 5e+16,
     "name": "The Unbridling"
@@ -163,6 +183,7 @@
     "effect": 2,
     "target": "grandma",
     "condition": 300,
+    "description": 0,
     "count": 0,
     "current_price": 5e+19,
     "name": "Reverse dementia"
@@ -171,6 +192,7 @@
     "effect": 2,
     "target": "grandma",
     "condition": 350,
+    "description": 0,
     "count": 0,
     "current_price": 5e+22,
     "name": "Timeproof hair dyes"
@@ -179,6 +201,7 @@
     "effect": 2,
     "target": "grandma",
     "condition": 400,
+    "description": 0,
     "count": 0,
     "current_price": 5e+26,
     "name": "Good manners"
@@ -187,6 +210,7 @@
     "effect": 2,
     "target": "farm",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 11000.0,
     "name": "Cheap hoes"
@@ -195,6 +219,7 @@
     "effect": 2,
     "target": "farm",
     "condition": 5,
+    "description": 0,
     "count": 0,
     "current_price": 55000.0,
     "name": "Fertilizer"
@@ -203,6 +228,7 @@
     "effect": 2,
     "target": "farm",
     "condition": 25,
+    "description": 0,
     "count": 0,
     "current_price": 550000.0,
     "name": "Cookie trees"
@@ -211,6 +237,7 @@
     "effect": 2,
     "target": "farm",
     "condition": 50,
+    "description": 0,
     "count": 0,
     "current_price": 55000000.0,
     "name": "Genetically-modified cookies"
@@ -219,6 +246,7 @@
     "effect": 2,
     "target": "farm",
     "condition": 100,
+    "description": 0,
     "count": 0,
     "current_price": 5500000000.0,
     "name": "Gingerbread scarecrows"
@@ -227,6 +255,7 @@
     "effect": 2,
     "target": "farm",
     "condition": 150,
+    "description": 0,
     "count": 0,
     "current_price": 550000000000.0,
     "name": "Pulsar sprinklers"
@@ -235,6 +264,7 @@
     "effect": 2,
     "target": "farm",
     "condition": 200,
+    "description": 0,
     "count": 0,
     "current_price": 550000000000000.0,
     "name": "Fudge fungus"
@@ -243,6 +273,7 @@
     "effect": 2,
     "target": "farm",
     "condition": 250,
+    "description": 0,
     "count": 0,
     "current_price": 5.5e+17,
     "name": "Wheat triffids"
@@ -251,6 +282,7 @@
     "effect": 2,
     "target": "farm",
     "condition": 300,
+    "description": 0,
     "count": 0,
     "current_price": 5.5e+20,
     "name": "Humane pesticides"
@@ -259,6 +291,7 @@
     "effect": 2,
     "target": "farm",
     "condition": 350,
+    "description": 0,
     "count": 0,
     "current_price": 5.5e+23,
     "name": "Barnstars"
@@ -267,6 +300,7 @@
     "effect": 2,
     "target": "farm",
     "condition": 400,
+    "description": 0,
     "count": 0,
     "current_price": 5.5e+27,
     "name": "Lindworms"
@@ -275,6 +309,7 @@
     "effect": 2,
     "target": "mine",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 120000.0,
     "name": "Sugar gas"
@@ -283,6 +318,7 @@
     "effect": 2,
     "target": "mine",
     "condition": 5,
+    "description": 0,
     "count": 0,
     "current_price": 600000.0,
     "name": "Megadrill"
@@ -291,6 +327,7 @@
     "effect": 2,
     "target": "mine",
     "condition": 25,
+    "description": 0,
     "count": 0,
     "current_price": 6000000.0,
     "name": "Ultradrill"
@@ -299,6 +336,7 @@
     "effect": 2,
     "target": "mine",
     "condition": 50,
+    "description": 0,
     "count": 0,
     "current_price": 600000000.0,
     "name": "Ultimadrill"
@@ -307,6 +345,7 @@
     "effect": 2,
     "target": "mine",
     "condition": 100,
+    "description": 0,
     "count": 0,
     "current_price": 60000000000.0,
     "name": "H-bomb mining"
@@ -315,6 +354,7 @@
     "effect": 2,
     "target": "mine",
     "condition": 150,
+    "description": 0,
     "count": 0,
     "current_price": 6000000000000.0,
     "name": "Coreforge"
@@ -323,6 +363,7 @@
     "effect": 2,
     "target": "mine",
     "condition": 200,
+    "description": 0,
     "count": 0,
     "current_price": 6000000000000000.0,
     "name": "Planetsplitters"
@@ -331,6 +372,7 @@
     "effect": 2,
     "target": "mine",
     "condition": 250,
+    "description": 0,
     "count": 0,
     "current_price": 6e+18,
     "name": "Canola oil wells"
@@ -339,6 +381,7 @@
     "effect": 2,
     "target": "mine",
     "condition": 300,
+    "description": 0,
     "count": 0,
     "current_price": 6e+21,
     "name": "Mole people"
@@ -347,6 +390,7 @@
     "effect": 2,
     "target": "mine",
     "condition": 350,
+    "description": 0,
     "count": 0,
     "current_price": 6e+24,
     "name": "Mine canaries"
@@ -355,6 +399,7 @@
     "effect": 2,
     "target": "mine",
     "condition": 400,
+    "description": 0,
     "count": 0,
     "current_price": 6e+28,
     "name": "Bore again"
@@ -363,6 +408,7 @@
     "effect": 2,
     "target": "factory",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 1300000.0,
     "name": "Sturdier conveyor belts"
@@ -371,6 +417,7 @@
     "effect": 2,
     "target": "factory",
     "condition": 5,
+    "description": 0,
     "count": 0,
     "current_price": 6500000.0,
     "name": "Child labor"
@@ -379,6 +426,7 @@
     "effect": 2,
     "target": "factory",
     "condition": 25,
+    "description": 0,
     "count": 0,
     "current_price": 65000000.0,
     "name": "Sweatshop"
@@ -387,6 +435,7 @@
     "effect": 2,
     "target": "factory",
     "condition": 50,
+    "description": 0,
     "count": 0,
     "current_price": 6500000000.0,
     "name": "Radium reactors"
@@ -395,6 +444,7 @@
     "effect": 2,
     "target": "factory",
     "condition": 100,
+    "description": 0,
     "count": 0,
     "current_price": 650000000000.0,
     "name": "Recombobulators"
@@ -403,6 +453,7 @@
     "effect": 2,
     "target": "factory",
     "condition": 150,
+    "description": 0,
     "count": 0,
     "current_price": 65000000000000.0,
     "name": "Deep-bake process"
@@ -411,6 +462,7 @@
     "effect": 2,
     "target": "factory",
     "condition": 200,
+    "description": 0,
     "count": 0,
     "current_price": 6.5e+16,
     "name": "Cyborg workforce"
@@ -419,6 +471,7 @@
     "effect": 2,
     "target": "factory",
     "condition": 250,
+    "description": 0,
     "count": 0,
     "current_price": 6.5e+19,
     "name": "78-hour days"
@@ -427,6 +480,7 @@
     "effect": 2,
     "target": "factory",
     "condition": 300,
+    "description": 0,
     "count": 0,
     "current_price": 6.5e+22,
     "name": "Machine learning"
@@ -435,6 +489,7 @@
     "effect": 2,
     "target": "factory",
     "condition": 350,
+    "description": 0,
     "count": 0,
     "current_price": 6.5e+25,
     "name": "Brownie point system"
@@ -443,6 +498,7 @@
     "effect": 2,
     "target": "factory",
     "condition": 400,
+    "description": 0,
     "count": 0,
     "current_price": 6.5e+29,
     "name": "\"Volunteer\" interns"
@@ -451,6 +507,7 @@
     "effect": 2,
     "target": "bank",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 14000000.0,
     "name": "Taller tellers"
@@ -459,6 +516,7 @@
     "effect": 2,
     "target": "bank",
     "condition": 5,
+    "description": 0,
     "count": 0,
     "current_price": 70000000.0,
     "name": "Scissor-resistant credit cards"
@@ -467,6 +525,7 @@
     "effect": 2,
     "target": "bank",
     "condition": 25,
+    "description": 0,
     "count": 0,
     "current_price": 700000000.0,
     "name": "Acid-proof vaults"
@@ -475,6 +534,7 @@
     "effect": 2,
     "target": "bank",
     "condition": 50,
+    "description": 0,
     "count": 0,
     "current_price": 70000000000.0,
     "name": "Chocolate coins"
@@ -483,6 +543,7 @@
     "effect": 2,
     "target": "bank",
     "condition": 100,
+    "description": 0,
     "count": 0,
     "current_price": 7000000000000.0,
     "name": "Exponential interest rates"
@@ -491,6 +552,7 @@
     "effect": 2,
     "target": "bank",
     "condition": 150,
+    "description": 0,
     "count": 0,
     "current_price": 700000000000000.0,
     "name": "Financial zen"
@@ -499,6 +561,7 @@
     "effect": 2,
     "target": "bank",
     "condition": 200,
+    "description": 0,
     "count": 0,
     "current_price": 7e+17,
     "name": "Way of the wallet"
@@ -507,6 +570,7 @@
     "effect": 2,
     "target": "bank",
     "condition": 250,
+    "description": 0,
     "count": 0,
     "current_price": 7e+20,
     "name": "The stuff rationale"
@@ -515,6 +579,7 @@
     "effect": 2,
     "target": "bank",
     "condition": 300,
+    "description": 0,
     "count": 0,
     "current_price": 7e+23,
     "name": "Edible money"
@@ -523,6 +588,7 @@
     "effect": 2,
     "target": "bank",
     "condition": 350,
+    "description": 0,
     "count": 0,
     "current_price": 7e+26,
     "name": "Grand supercycle"
@@ -531,6 +597,7 @@
     "effect": 2,
     "target": "bank",
     "condition": 400,
+    "description": 0,
     "count": 0,
     "current_price": 7e+30,
     "name": "Rules of acquisition"
@@ -539,6 +606,7 @@
     "effect": 2,
     "target": "temple",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 200000000.0,
     "name": "Golden idols"
@@ -547,6 +615,7 @@
     "effect": 2,
     "target": "temple",
     "condition": 5,
+    "description": 0,
     "count": 0,
     "current_price": 1000000000.0,
     "name": "Sacrifices"
@@ -555,6 +624,7 @@
     "effect": 2,
     "target": "temple",
     "condition": 25,
+    "description": 0,
     "count": 0,
     "current_price": 10000000000.0,
     "name": "Delicious blessing"
@@ -563,6 +633,7 @@
     "effect": 2,
     "target": "temple",
     "condition": 50,
+    "description": 0,
     "count": 0,
     "current_price": 1000000000000.0,
     "name": "Sun festival"
@@ -571,6 +642,7 @@
     "effect": 2,
     "target": "temple",
     "condition": 100,
+    "description": 0,
     "count": 0,
     "current_price": 100000000000000.0,
     "name": "Enlarged pantheon"
@@ -579,6 +651,7 @@
     "effect": 2,
     "target": "temple",
     "condition": 150,
+    "description": 0,
     "count": 0,
     "current_price": 1e+16,
     "name": "Great Baker in the sky"
@@ -587,6 +660,7 @@
     "effect": 2,
     "target": "temple",
     "condition": 200,
+    "description": 0,
     "count": 0,
     "current_price": 1e+19,
     "name": "Creation myth"
@@ -595,6 +669,7 @@
     "effect": 2,
     "target": "temple",
     "condition": 250,
+    "description": 0,
     "count": 0,
     "current_price": 1e+22,
     "name": "Theocracy"
@@ -603,6 +678,7 @@
     "effect": 2,
     "target": "temple",
     "condition": 300,
+    "description": 0,
     "count": 0,
     "current_price": 9.999999999999999e+24,
     "name": "Sick rap prayers"
@@ -611,6 +687,7 @@
     "effect": 2,
     "target": "temple",
     "condition": 350,
+    "description": 0,
     "count": 0,
     "current_price": 1e+28,
     "name": "Psalm-reading"
@@ -619,6 +696,7 @@
     "effect": 2,
     "target": "temple",
     "condition": 400,
+    "description": 0,
     "count": 0,
     "current_price": 1e+32,
     "name": "War of the gods"
@@ -627,6 +705,7 @@
     "effect": 2,
     "target": "wizard tower",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 3300000000.0,
     "name": "Pointier hats"
@@ -635,6 +714,7 @@
     "effect": 2,
     "target": "wizard tower",
     "condition": 5,
+    "description": 0,
     "count": 0,
     "current_price": 16500000000.0,
     "name": "Beardlier beards"
@@ -643,6 +723,7 @@
     "effect": 2,
     "target": "wizard tower",
     "condition": 25,
+    "description": 0,
     "count": 0,
     "current_price": 165000000000.0,
     "name": "Ancient grimoires"
@@ -651,6 +732,7 @@
     "effect": 2,
     "target": "wizard tower",
     "condition": 50,
+    "description": 0,
     "count": 0,
     "current_price": 16500000000000.0,
     "name": "Kitchen curses"
@@ -659,6 +741,7 @@
     "effect": 2,
     "target": "wizard tower",
     "condition": 100,
+    "description": 0,
     "count": 0,
     "current_price": 1650000000000000.0,
     "name": "School of sorcery"
@@ -667,6 +750,7 @@
     "effect": 2,
     "target": "wizard tower",
     "condition": 150,
+    "description": 0,
     "count": 0,
     "current_price": 1.65e+17,
     "name": "Dark formulas"
@@ -675,6 +759,7 @@
     "effect": 2,
     "target": "wizard tower",
     "condition": 200,
+    "description": 0,
     "count": 0,
     "current_price": 1.65e+20,
     "name": "Cookiemancy"
@@ -683,6 +768,7 @@
     "effect": 2,
     "target": "wizard tower",
     "condition": 250,
+    "description": 0,
     "count": 0,
     "current_price": 1.65e+23,
     "name": "Rabbit trick"
@@ -691,6 +777,7 @@
     "effect": 2,
     "target": "wizard tower",
     "condition": 300,
+    "description": 0,
     "count": 0,
     "current_price": 1.65e+26,
     "name": "Deluxe tailored wands"
@@ -699,6 +786,7 @@
     "effect": 2,
     "target": "wizard tower",
     "condition": 350,
+    "description": 0,
     "count": 0,
     "current_price": 1.65e+29,
     "name": "Immobile spellcasting"
@@ -707,6 +795,7 @@
     "effect": 2,
     "target": "wizard tower",
     "condition": 400,
+    "description": 0,
     "count": 0,
     "current_price": 1.65e+33,
     "name": "Electricity"
@@ -715,6 +804,7 @@
     "effect": 2,
     "target": "shipment",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 51000000000.0,
     "name": "Vanilla nebulae"
@@ -723,6 +813,7 @@
     "effect": 2,
     "target": "shipment",
     "condition": 5,
+    "description": 0,
     "count": 0,
     "current_price": 255000000000.0,
     "name": "Wormholes"
@@ -731,6 +822,7 @@
     "effect": 2,
     "target": "shipment",
     "condition": 25,
+    "description": 0,
     "count": 0,
     "current_price": 2550000000000.0,
     "name": "Frequent flyer"
@@ -739,6 +831,7 @@
     "effect": 2,
     "target": "shipment",
     "condition": 50,
+    "description": 0,
     "count": 0,
     "current_price": 255000000000000.0,
     "name": "Warp drive"
@@ -747,6 +840,7 @@
     "effect": 2,
     "target": "shipment",
     "condition": 100,
+    "description": 0,
     "count": 0,
     "current_price": 2.55e+16,
     "name": "Chocolate monoliths"
@@ -755,6 +849,7 @@
     "effect": 2,
     "target": "shipment",
     "condition": 150,
+    "description": 0,
     "count": 0,
     "current_price": 2.55e+18,
     "name": "Generation ship"
@@ -763,6 +858,7 @@
     "effect": 2,
     "target": "shipment",
     "condition": 200,
+    "description": 0,
     "count": 0,
     "current_price": 2.55e+21,
     "name": "Dyson sphere"
@@ -771,6 +867,7 @@
     "effect": 2,
     "target": "shipment",
     "condition": 250,
+    "description": 0,
     "count": 0,
     "current_price": 2.55e+24,
     "name": "The final frontier"
@@ -779,6 +876,7 @@
     "effect": 2,
     "target": "shipment",
     "condition": 300,
+    "description": 0,
     "count": 0,
     "current_price": 2.55e+27,
     "name": "Autopilot"
@@ -787,6 +885,7 @@
     "effect": 2,
     "target": "shipment",
     "condition": 350,
+    "description": 0,
     "count": 0,
     "current_price": 2.5499999999999996e+30,
     "name": "Restaurants at the end of the universe"
@@ -795,6 +894,7 @@
     "effect": 2,
     "target": "shipment",
     "condition": 400,
+    "description": 0,
     "count": 0,
     "current_price": 2.5499999999999997e+34,
     "name": "Universal alphabet"
@@ -803,6 +903,7 @@
     "effect": 2,
     "target": "alchemy lab",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 750000000000.0,
     "name": "Antimony"
@@ -811,6 +912,7 @@
     "effect": 2,
     "target": "alchemy lab",
     "condition": 5,
+    "description": 0,
     "count": 0,
     "current_price": 3750000000000.0,
     "name": "Essence of dough"
@@ -819,6 +921,7 @@
     "effect": 2,
     "target": "alchemy lab",
     "condition": 25,
+    "description": 0,
     "count": 0,
     "current_price": 37500000000000.0,
     "name": "True chocolate"
@@ -827,6 +930,7 @@
     "effect": 2,
     "target": "alchemy lab",
     "condition": 50,
+    "description": 0,
     "count": 0,
     "current_price": 3750000000000000.0,
     "name": "Ambrosia"
@@ -835,6 +939,7 @@
     "effect": 2,
     "target": "alchemy lab",
     "condition": 100,
+    "description": 0,
     "count": 0,
     "current_price": 3.75e+17,
     "name": "Aqua crustulae"
@@ -843,6 +948,7 @@
     "effect": 2,
     "target": "alchemy lab",
     "condition": 150,
+    "description": 0,
     "count": 0,
     "current_price": 3.75e+19,
     "name": "Origin crucible"
@@ -851,6 +957,7 @@
     "effect": 2,
     "target": "alchemy lab",
     "condition": 200,
+    "description": 0,
     "count": 0,
     "current_price": 3.75e+22,
     "name": "Theory of atomic fluidity"
@@ -859,6 +966,7 @@
     "effect": 2,
     "target": "alchemy lab",
     "condition": 250,
+    "description": 0,
     "count": 0,
     "current_price": 3.75e+25,
     "name": "Beige goo"
@@ -867,6 +975,7 @@
     "effect": 2,
     "target": "alchemy lab",
     "condition": 300,
+    "description": 0,
     "count": 0,
     "current_price": 3.75e+28,
     "name": "The advent of chemistry"
@@ -875,6 +984,7 @@
     "effect": 2,
     "target": "alchemy lab",
     "condition": 350,
+    "description": 0,
     "count": 0,
     "current_price": 3.75e+31,
     "name": "On second thought"
@@ -883,6 +993,7 @@
     "effect": 2,
     "target": "alchemy lab",
     "condition": 400,
+    "description": 0,
     "count": 0,
     "current_price": 3.75e+35,
     "name": "Public betterment"
@@ -891,6 +1002,7 @@
     "effect": 2,
     "target": "portal",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 10000000000000.0,
     "name": "Ancient tablet"
@@ -899,6 +1011,7 @@
     "effect": 2,
     "target": "portal",
     "condition": 5,
+    "description": 0,
     "count": 0,
     "current_price": 50000000000000.0,
     "name": "Insane oatling workers"
@@ -907,6 +1020,7 @@
     "effect": 2,
     "target": "portal",
     "condition": 25,
+    "description": 0,
     "count": 0,
     "current_price": 500000000000000.0,
     "name": "Soul bond"
@@ -915,6 +1029,7 @@
     "effect": 2,
     "target": "portal",
     "condition": 50,
+    "description": 0,
     "count": 0,
     "current_price": 5e+16,
     "name": "Sanity dance"
@@ -923,6 +1038,7 @@
     "effect": 2,
     "target": "portal",
     "condition": 100,
+    "description": 0,
     "count": 0,
     "current_price": 5e+18,
     "name": "Brane transplant"
@@ -931,6 +1047,7 @@
     "effect": 2,
     "target": "portal",
     "condition": 150,
+    "description": 0,
     "count": 0,
     "current_price": 5e+20,
     "name": "Deity-sized portals"
@@ -939,6 +1056,7 @@
     "effect": 2,
     "target": "portal",
     "condition": 200,
+    "description": 0,
     "count": 0,
     "current_price": 5e+23,
     "name": "End of times back-up plan"
@@ -947,6 +1065,7 @@
     "effect": 2,
     "target": "portal",
     "condition": 250,
+    "description": 0,
     "count": 0,
     "current_price": 5e+26,
     "name": "Maddening chants"
@@ -955,6 +1074,7 @@
     "effect": 2,
     "target": "portal",
     "condition": 300,
+    "description": 0,
     "count": 0,
     "current_price": 5e+29,
     "name": "The real world"
@@ -963,6 +1083,7 @@
     "effect": 2,
     "target": "portal",
     "condition": 350,
+    "description": 0,
     "count": 0,
     "current_price": 5.0000000000000004e+32,
     "name": "Dimensional garbage gulper"
@@ -971,6 +1092,7 @@
     "effect": 2,
     "target": "portal",
     "condition": 400,
+    "description": 0,
     "count": 0,
     "current_price": 5.0000000000000004e+36,
     "name": "Embedded microportals"
@@ -979,6 +1101,7 @@
     "effect": 2,
     "target": "time machine",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 140000000000000.0,
     "name": "Flux capacitors"
@@ -987,6 +1110,7 @@
     "effect": 2,
     "target": "time machine",
     "condition": 5,
+    "description": 0,
     "count": 0,
     "current_price": 700000000000000.0,
     "name": "Time paradox resolver"
@@ -995,6 +1119,7 @@
     "effect": 2,
     "target": "time machine",
     "condition": 25,
+    "description": 0,
     "count": 0,
     "current_price": 7000000000000000.0,
     "name": "Quantum conundrum"
@@ -1003,6 +1128,7 @@
     "effect": 2,
     "target": "time machine",
     "condition": 50,
+    "description": 0,
     "count": 0,
     "current_price": 7e+17,
     "name": "Causality enforcer"
@@ -1011,6 +1137,7 @@
     "effect": 2,
     "target": "time machine",
     "condition": 100,
+    "description": 0,
     "count": 0,
     "current_price": 7e+19,
     "name": "Yestermorrow comparators"
@@ -1019,6 +1146,7 @@
     "effect": 2,
     "target": "time machine",
     "condition": 150,
+    "description": 0,
     "count": 0,
     "current_price": 7e+21,
     "name": "Far future enactment"
@@ -1027,6 +1155,7 @@
     "effect": 2,
     "target": "time machine",
     "condition": 200,
+    "description": 0,
     "count": 0,
     "current_price": 7e+24,
     "name": "Great loop hypothesis"
@@ -1035,6 +1164,7 @@
     "effect": 2,
     "target": "time machine",
     "condition": 250,
+    "description": 0,
     "count": 0,
     "current_price": 7e+27,
     "name": "Cookietopian moments of maybe"
@@ -1043,6 +1173,7 @@
     "effect": 2,
     "target": "time machine",
     "condition": 300,
+    "description": 0,
     "count": 0,
     "current_price": 7e+30,
     "name": "Second seconds"
@@ -1051,6 +1182,7 @@
     "effect": 2,
     "target": "time machine",
     "condition": 350,
+    "description": 0,
     "count": 0,
     "current_price": 6.999999999999999e+33,
     "name": "Additional clock hands"
@@ -1059,6 +1191,7 @@
     "effect": 2,
     "target": "time machine",
     "condition": 400,
+    "description": 0,
     "count": 0,
     "current_price": 7e+37,
     "name": "Nostalgia"
@@ -1067,6 +1200,7 @@
     "effect": 2,
     "target": "antimatter condenser",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 1700000000000000.0,
     "name": "Sugar bosons"
@@ -1075,6 +1209,7 @@
     "effect": 2,
     "target": "antimatter condenser",
     "condition": 5,
+    "description": 0,
     "count": 0,
     "current_price": 8500000000000000.0,
     "name": "String theory"
@@ -1083,6 +1218,7 @@
     "effect": 2,
     "target": "antimatter condenser",
     "condition": 25,
+    "description": 0,
     "count": 0,
     "current_price": 8.5e+16,
     "name": "Large macaron collider"
@@ -1091,6 +1227,7 @@
     "effect": 2,
     "target": "antimatter condenser",
     "condition": 50,
+    "description": 0,
     "count": 0,
     "current_price": 8.5e+18,
     "name": "Big bang bake"
@@ -1099,6 +1236,7 @@
     "effect": 2,
     "target": "antimatter condenser",
     "condition": 100,
+    "description": 0,
     "count": 0,
     "current_price": 8.5e+20,
     "name": "Reverse cyclotrons"
@@ -1107,6 +1245,7 @@
     "effect": 2,
     "target": "antimatter condenser",
     "condition": 150,
+    "description": 0,
     "count": 0,
     "current_price": 8.5e+22,
     "name": "Nanocosmics"
@@ -1115,6 +1254,7 @@
     "effect": 2,
     "target": "antimatter condenser",
     "condition": 200,
+    "description": 0,
     "count": 0,
     "current_price": 8.5e+25,
     "name": "The Pulse"
@@ -1123,6 +1263,7 @@
     "effect": 2,
     "target": "antimatter condenser",
     "condition": 250,
+    "description": 0,
     "count": 0,
     "current_price": 8.5e+28,
     "name": "Some other super-tiny fundamental particle? Probably?"
@@ -1131,6 +1272,7 @@
     "effect": 2,
     "target": "antimatter condenser",
     "condition": 300,
+    "description": 0,
     "count": 0,
     "current_price": 8.5e+31,
     "name": "Quantum comb"
@@ -1139,6 +1281,7 @@
     "effect": 2,
     "target": "antimatter condenser",
     "condition": 350,
+    "description": 0,
     "count": 0,
     "current_price": 8.5e+34,
     "name": "Baking Nobel prize"
@@ -1147,6 +1290,7 @@
     "effect": 2,
     "target": "antimatter condenser",
     "condition": 400,
+    "description": 0,
     "count": 0,
     "current_price": 8.5e+38,
     "name": "The definite molecule"
@@ -1155,6 +1299,7 @@
     "effect": 2,
     "target": "prism",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 2.1e+16,
     "name": "Gem polish"
@@ -1163,6 +1308,7 @@
     "effect": 2,
     "target": "prism",
     "condition": 5,
+    "description": 0,
     "count": 0,
     "current_price": 1.05e+17,
     "name": "9th color"
@@ -1171,6 +1317,7 @@
     "effect": 2,
     "target": "prism",
     "condition": 25,
+    "description": 0,
     "count": 0,
     "current_price": 1.05e+18,
     "name": "Chocolate light"
@@ -1179,6 +1326,7 @@
     "effect": 2,
     "target": "prism",
     "condition": 50,
+    "description": 0,
     "count": 0,
     "current_price": 1.05e+20,
     "name": "Grainbow"
@@ -1187,6 +1335,7 @@
     "effect": 2,
     "target": "prism",
     "condition": 100,
+    "description": 0,
     "count": 0,
     "current_price": 1.05e+22,
     "name": "Pure cosmic light"
@@ -1195,6 +1344,7 @@
     "effect": 2,
     "target": "prism",
     "condition": 150,
+    "description": 0,
     "count": 0,
     "current_price": 1.05e+24,
     "name": "Glow-in-the-dark"
@@ -1203,6 +1353,7 @@
     "effect": 2,
     "target": "prism",
     "condition": 200,
+    "description": 0,
     "count": 0,
     "current_price": 1.0500000000000001e+27,
     "name": "Lux sanctorum"
@@ -1211,6 +1362,7 @@
     "effect": 2,
     "target": "prism",
     "condition": 250,
+    "description": 0,
     "count": 0,
     "current_price": 1.05e+30,
     "name": "Reverse shadows"
@@ -1219,6 +1371,7 @@
     "effect": 2,
     "target": "prism",
     "condition": 300,
+    "description": 0,
     "count": 0,
     "current_price": 1.05e+33,
     "name": "Crystal mirrors"
@@ -1227,6 +1380,7 @@
     "effect": 2,
     "target": "prism",
     "condition": 350,
+    "description": 0,
     "count": 0,
     "current_price": 1.05e+36,
     "name": "Reverse theory of light"
@@ -1235,6 +1389,7 @@
     "effect": 2,
     "target": "prism",
     "condition": 400,
+    "description": 0,
     "count": 0,
     "current_price": 1.0499999999999999e+40,
     "name": "Light capture measures"
@@ -1243,6 +1398,7 @@
     "effect": 2,
     "target": "chancemaker",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 2.6e+17,
     "name": "Your lucky cookie"
@@ -1251,6 +1407,7 @@
     "effect": 2,
     "target": "chancemaker",
     "condition": 5,
+    "description": 0,
     "count": 0,
     "current_price": 1.3e+18,
     "name": "\"All Bets Are Off\" magic coin"
@@ -1259,6 +1416,7 @@
     "effect": 2,
     "target": "chancemaker",
     "condition": 25,
+    "description": 0,
     "count": 0,
     "current_price": 1.3e+19,
     "name": "Winning lottery ticket"
@@ -1267,6 +1425,7 @@
     "effect": 2,
     "target": "chancemaker",
     "condition": 50,
+    "description": 0,
     "count": 0,
     "current_price": 1.3e+21,
     "name": "Four-leaf clover field"
@@ -1275,6 +1434,7 @@
     "effect": 2,
     "target": "chancemaker",
     "condition": 100,
+    "description": 0,
     "count": 0,
     "current_price": 1.3e+23,
     "name": "A recipe book about books"
@@ -1283,6 +1443,7 @@
     "effect": 2,
     "target": "chancemaker",
     "condition": 150,
+    "description": 0,
     "count": 0,
     "current_price": 1.3e+25,
     "name": "Leprechaun village"
@@ -1291,6 +1452,7 @@
     "effect": 2,
     "target": "chancemaker",
     "condition": 200,
+    "description": 0,
     "count": 0,
     "current_price": 1.3e+28,
     "name": "Improbability drive"
@@ -1299,6 +1461,7 @@
     "effect": 2,
     "target": "chancemaker",
     "condition": 250,
+    "description": 0,
     "count": 0,
     "current_price": 1.3e+31,
     "name": "Antisuperstistronics"
@@ -1307,6 +1470,7 @@
     "effect": 2,
     "target": "chancemaker",
     "condition": 300,
+    "description": 0,
     "count": 0,
     "current_price": 1.3e+34,
     "name": "Bunnypedes"
@@ -1315,6 +1479,7 @@
     "effect": 2,
     "target": "chancemaker",
     "condition": 350,
+    "description": 0,
     "count": 0,
     "current_price": 1.3e+37,
     "name": "Revised probabilistics"
@@ -1323,6 +1488,7 @@
     "effect": 2,
     "target": "chancemaker",
     "condition": 400,
+    "description": 0,
     "count": 0,
     "current_price": 1.2999999999999998e+41,
     "name": "0-sided dice"
@@ -1331,6 +1497,7 @@
     "effect": 2,
     "target": "fractal engine",
     "condition": 1,
+    "description": 0,
     "count": 0,
     "current_price": 3.1e+18,
     "name": "Metabakeries"
@@ -1339,6 +1506,7 @@
     "effect": 2,
     "target": "fractal engine",
     "condition": 5,
+    "description": 0,
     "count": 0,
     "current_price": 1.55e+19,
     "name": "Mandelbrown sugar"
@@ -1347,6 +1515,7 @@
     "effect": 2,
     "target": "fractal engine",
     "condition": 25,
+    "description": 0,
     "count": 0,
     "current_price": 1.55e+20,
     "name": "Fractoids"
@@ -1355,6 +1524,7 @@
     "effect": 2,
     "target": "fractal engine",
     "condition": 50,
+    "description": 0,
     "count": 0,
     "current_price": 1.55e+22,
     "name": "Nested universe theory"
@@ -1363,6 +1533,7 @@
     "effect": 2,
     "target": "fractal engine",
     "condition": 100,
+    "description": 0,
     "count": 0,
     "current_price": 1.55e+24,
     "name": "Menger sponge cake"
@@ -1371,6 +1542,7 @@
     "effect": 2,
     "target": "fractal engine",
     "condition": 150,
+    "description": 0,
     "count": 0,
     "current_price": 1.55e+26,
     "name": "One particularly good-humored cow"
@@ -1379,6 +1551,7 @@
     "effect": 2,
     "target": "fractal engine",
     "condition": 200,
+    "description": 0,
     "count": 0,
     "current_price": 1.55e+29,
     "name": "Chocolate ouroboros"
@@ -1387,6 +1560,7 @@
     "effect": 2,
     "target": "fractal engine",
     "condition": 250,
+    "description": 0,
     "count": 0,
     "current_price": 1.55e+32,
     "name": "Nested"
@@ -1395,6 +1569,7 @@
     "effect": 2,
     "target": "fractal engine",
     "condition": 300,
+    "description": 0,
     "count": 0,
     "current_price": 1.55e+35,
     "name": "Space-filling fibers"
@@ -1403,6 +1578,7 @@
     "effect": 2,
     "target": "fractal engine",
     "condition": 350,
+    "description": 0,
     "count": 0,
     "current_price": 1.55e+38,
     "name": "Endless book of prose"
@@ -1411,6 +1587,7 @@
     "effect": 2,
     "target": "fractal engine",
     "condition": 400,
+    "description": 0,
     "count": 0,
     "current_price": 1.55e+42,
     "name": "The set of all sets"

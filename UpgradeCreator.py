@@ -1,5 +1,5 @@
 import json
-from bs4 import BeautifulSoup as bs
+from bs4 import BeautifulSoup
 import requests
 
 from Packages import undisplay_num, float_extract
@@ -10,7 +10,7 @@ page_link = 'https://cookieclicker.fandom.com/wiki/Upgrades'
 # Downloads the HTML of the page
 page_response = requests.get(page_link, timeout=5).text
 # Soups the HTML of the file
-soup = bs(page_response, "html.parser")
+soup = BeautifulSoup(page_response, "html.parser")
 
 
 # Pulls out all of the tables with upgrades
@@ -65,7 +65,7 @@ for table in filled_tables[:-13]:
             # If the
             if 'Cursor' in table[0][0]:
                 table[0][0] = 'auto clicker'
-            elif 'upgrades' in table [0][0]:
+            elif 'upgrades' in table[0][0]:
                 table[0][0] = table[0][0].lower().replace('upgrades', '').strip()
 
             if type(row[2]) == str:

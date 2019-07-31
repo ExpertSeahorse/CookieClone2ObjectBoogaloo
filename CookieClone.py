@@ -12,6 +12,7 @@ from TkinterPackages import CreateToolTip
 # TODO: Add restarting incentive (Ascend)
 # TODO: Add scrollbar for smaller screens
 # TODO: Achievements
+# TODO: Investment Bank
 
 
 class GameWindow:
@@ -72,7 +73,7 @@ class GameWindow:
                       ("100x", 100)]
         for name, val in radio_list:
             self.name = tk.Radiobutton(self.frame_mult, text=name, variable=self.var,
-                                       value=val, indicatoron=0, width=5, command=self.create_shop)
+                                       value=val, indicatoron=0, width=5, command=self.update_shop)
             self.name.grid(row=0, column=i)
             i += 1
 
@@ -100,6 +101,19 @@ class GameWindow:
             self.button = tk.Button(self.frame_misc, width=15, text=text, command=comm)
             self.button.grid(row=1, column=c)
 
+    def update_shop(self):
+        """
+        Light weight function to update the prices and count of the buildings in the shop without totally recreating
+        everything
+        :return:
+        """
+        for i in range(len(self.price_list)):
+            building = PLAYER.inventory[i]
+            self.price_list[i].configure(
+                text='$' + display_num(round(self.current_price_calculator(building.base_price, building.count))))
+
+            self.count_list[i].configure(text=str(building.count))
+
     def create_shop(self):
         """
         Creates the entire shop: Prices, Buy buttons, & Quantity numbers based on PLAYER.inventory
@@ -109,16 +123,13 @@ class GameWindow:
         self.button_lst = []
         self.count_list = []
         index = 1
-        r = 3
         for building in PLAYER.inventory:
             label = building.name.lower().capitalize()
+            r = index + 2
 
-            # makes price labels (for the displayed price: is the price x [1.15^(building mult number-1)]
-            # The '...-1' is because the correct price is stored in the PLAYER.inv entry
-            p = self.buy_ct_calculator(building.base_price, building.count)
+            # makes price labels
             price_name = tk.Label(self.frame_shop, width=21,
-                                  text='$' +
-                                       display_num(round(p)))
+                                  text='$' + display_num(round(self.current_price_calculator(building.base_price, building.count))))
             price_name.grid(row=r)
             self.price_list.append(price_name)
 
@@ -135,7 +146,6 @@ class GameWindow:
             key.grid(row=r, column=2)
             self.count_list.append(key)
 
-            r += 1
             index += 1
 
     def create_tooltip(self, name, building, index):
@@ -182,7 +192,7 @@ class GameWindow:
         buy_ct = self.var.get()
         building = PLAYER.inventory[choice-1]
         # If the player can afford the building at it's current price based on quantity purchased
-        if PLAYER.balance >= self.buy_ct_calculator(building.base_price, building.count):
+        if PLAYER.balance >= self.current_price_calculator(building.base_price, building.count):
             # For every copy of the building required...
             for i in range(0, buy_ct):
                 # Take the cookies from the player
@@ -190,19 +200,17 @@ class GameWindow:
                 # Give the player one building
                 building.count += 1
                 # Raise the price of the next building
-                # TODO: Debug why this depletes te player's money
-                building.current_price = self.buy_ct_calculator(building.base_price, building.count)
+                building.current_price = self.current_price_calculator(building.base_price, building.count, True)
             # Update their balance
-            bal = display_num(round(PLAYER.balance))
-            self.bal_show.config(text="Balance: " + bal)
+            self.bal_show.config(text="Balance: " + display_num(round(PLAYER.balance)))
             # Update the building's count list
             self.count_list[choice - 1].config(text=display_num(building.count))
             # Update the building's price list
-            self.price_list[choice - 1].config(text='$' +
-                                                    display_num(round(building.current_price * (1.15 ** (buy_ct - 1)))))
+            self.price_list[choice - 1].config(
+                text='$' + display_num(round(self.current_price_calculator(building.base_price, building.count))))
             # Recalculate and update the cps
             PLAYER.cps_update()
-            self.cps_show.config(text="Clicks per Second (cps): " + display_num(PLAYER.cps))
+            self.cps_show.config(text="Clicks per Second (cps): " + display_num(round(PLAYER.cps, 1)))
 
             # Update all the tooltips (for cps%)
             i = 0
@@ -229,13 +237,19 @@ class GameWindow:
         # Repeat after 10ms
         self.bal_show.after(10, self.game_tick)
 
-    def buy_ct_calculator(self, base, build_ct):
+    def current_price_calculator(self, base, build_ct, buy_compensation=False):
         """
-        Calculates the final cost of a building if the player is buying $buy_ct of them with $num being the current price
-        :param num:
+        Calculates the final cost of a building
+        if the player is buying $buy_ct of them with $num being the current price
+        :param base:
+        :param build_ct:
+        :param buy_compensation:
         :return:
         """
-        buy_ct = self.var.get()
+        if not buy_compensation:
+            buy_ct = self.var.get()
+        else:
+            buy_ct = 1
         return (base * (1.15**(build_ct + buy_ct) - 1.15**build_ct))/.15
 
     # noinspection PyAttributeOutsideInit
@@ -468,9 +482,10 @@ class Upgrade(Thing):
 
 
 class Building(Thing):
-    def __init__(self, name='', cps=0, current_price=0, count=0, upgrade_total=1, base_price=0):
+    def __init__(self, name='', cps=0, current_price=0, count=0, upgrade_mult=1, base_price=0):
         """
         Creates a building object
+        :type count: int
         :param name:
         :param cps:
         :param current_price:
@@ -479,7 +494,7 @@ class Building(Thing):
         """
         self.cps = cps
         self.base_price = base_price
-        self.upgrade_total = upgrade_total
+        self.upgrade_mult = upgrade_mult
         super().__init__(name, current_price, count)
 
 
