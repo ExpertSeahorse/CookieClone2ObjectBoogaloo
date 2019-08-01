@@ -5,7 +5,6 @@ from os import path
 from Packages import time_delta_display, display_num
 from TkinterPackages import CreateToolTip
 # TODO: Make buttons disappear until the player can afford them
-# TODO: Add upgrades shop
 # TODO: Add upgrades buy function
 # TODO: Figure out and implement how to add the special cursor effects
 # TODO: Add non-building upgrades
@@ -39,14 +38,18 @@ class GameWindow:
         self.bal_show = tk.Label(master, text="Balance: " + str(PLAYER.balance))
         self.bal_show.pack()
 
-        # Runs the game tick if the player has purchased a building # May remove this for accurate run time
+        # Runs the game tick
         self.save_counter = 0
         self.game_tick()
         # Creates cps number
         self.cps_show = tk.Label(master, text="Clicks per Second (cps): " + str(PLAYER.cps))
         self.cps_show.pack()
 ########################################################################################################################
+        # Upgrade bar Frame
+        self.frame_upgrade = tk.Frame(master)
+        self.frame_upgrade.pack(side=tk.TOP, fill=tk.X)
 
+########################################################################################################################
         # SHOP FRAME
         self.frame_shop = tk.Frame(master)
         self.frame_shop.pack(side=tk.TOP, fill=tk.X)
@@ -80,7 +83,7 @@ class GameWindow:
         self.price_list = []
         self.button_lst = []
         # self.tooltp_lst = []
-        self.create_shop()
+        self.create_building_shop()
 ########################################################################################################################
 
         # MISC FRAME
@@ -113,7 +116,7 @@ class GameWindow:
 
             self.count_list[i].configure(text=str(building.count))
 
-    def create_shop(self):
+    def create_building_shop(self):
         """
         Creates the entire shop: Prices, Buy buttons, & Quantity numbers based on PLAYER.inventory
         :return:
@@ -121,31 +124,36 @@ class GameWindow:
         self.price_list = []
         self.button_lst = []
         self.count_list = []
-        index = 1
         for i, building in enumerate(PLAYER.inventory, 1):
             label = building.name.lower().capitalize()
             r = i + 2
 
             # makes price labels
-            price_name = tk.Label(self.frame_shop, width=21,
+            price_name = tk.Label(self.frame_shop, width=20,
                                   text='$' + display_num(round(self.current_price_calculator(building.base_price, building.count))))
             price_name.grid(row=r)
             self.price_list.append(price_name)
 
             # makes purchase buttons
-            but_name = tk.Button(self.frame_shop, text=label, width=20, command=lambda j=index: self.buy_building(j))
+            but_name = tk.Button(self.frame_shop, text=label, width=20, command=lambda j=i: self.buy_building(j))
             but_name.grid(row=r, column=1)
             self.button_lst.append(but_name)
 
             # makes the rollover tooltips
-            self.create_tooltip(building.name, building, index - 1)
+            self.create_building_tooltip(building.name, building, i - 1)
 
             # makes count labels
-            key = tk.Label(self.frame_shop, width=21, text=str(building.count))
+            key = tk.Label(self.frame_shop, width=20, text=str(building.count))
             key.grid(row=r, column=2)
             self.count_list.append(key)
 
-    def create_tooltip(self, name, building, index):
+    def create_upgrade_shop(self):
+        PLAYER.check_upg_cond()
+        for i, upgrade in enumerate(PLAYER.available_upgrades[:6]):
+            self.button = tk.Button(self.frame_upgrade, width=12, text=upgrade.name, command=self.buy_upgrade)
+            self.button.grid(row=1, column=i, rowspan=2)
+
+    def create_building_tooltip(self, name, building, index):
         """
         Creates tooltips
         :param name:
@@ -155,7 +163,7 @@ class GameWindow:
         """
         label = name.capitalize()
         # Gets the cps created by the building type
-        build_cps = building.count * building.cps
+        build_cps = building.count * building.cps * building.upgrade_mult
         PLAYER.cps_update()
         # Gets the % of the cps contributed by the building type
         try:
@@ -165,7 +173,7 @@ class GameWindow:
 
         # Creates the tooltip
         CreateToolTip(self.button_lst[index],
-                      "--Each " + label + " produces " + display_num(building.cps) + " cookies per second\n" +
+                      "--Each " + label + " produces " + display_num(building.cps * building.upgrade_mult) + " cookies per second\n" +
                       "--" + display_num(building.count) + " " + label + "s producing " +
                       display_num(build_cps) + " cookies per second (" + build_cps_ratio + "%)")
 
@@ -189,7 +197,7 @@ class GameWindow:
         buy_ct = self.var.get()
         building = PLAYER.inventory[choice-1]
         # If the player can afford the building at it's current price based on quantity purchased
-        if PLAYER.balance >= self.current_price_calculator(building.base_price, building.count):
+        if PLAYER.balance >= round(self.current_price_calculator(building.base_price, building.count)):
             # For every copy of the building required...
             for i in range(0, buy_ct):
                 # Take the cookies from the player
@@ -209,9 +217,14 @@ class GameWindow:
             PLAYER.cps_update()
             self.cps_show.config(text="Clicks per Second (cps): " + display_num(round(PLAYER.cps, 1)))
 
+            PLAYER.check_upg_cond()
+
             # Update all the tooltips (for cps%)
             for i, entry in enumerate(PLAYER.inventory):
-                self.create_tooltip(entry.name, entry, i)
+                self.create_building_tooltip(entry.name, entry, i)
+
+    def buy_upgrade(self):
+        pass
 
     def game_tick(self):
         """
@@ -223,6 +236,7 @@ class GameWindow:
         # Add the cps to the player's balance
         PLAYER.balance += PLAYER.cps
         PLAYER.earned += PLAYER.cps
+        PLAYER.life_earned += PLAYER.cps
         # Update the balance
         self.bal_show.config(text="Balance: " + display_num(round(PLAYER.balance)))
         self.save_counter += 1
@@ -319,7 +333,7 @@ class Player:
         self.inventory = []
         self.j_inv = []
         for entry in self.building_list:
-            self.inventory.append(Building(*entry, 0, entry[2]))
+            self.inventory.append(Building(*entry, 0, 1, entry[2]))
         # Initializes the cookies per second (cps)
         self.cps = 0
         # Initializes the start time of the entire game
@@ -332,6 +346,13 @@ class Player:
         self.click_str = 1
         # Stores the number of clicked cookies
         self.handmade = 0
+        with open('Upgrades.json') as fin:
+            self.j_unowned_upgrades = json.load(fin)
+            self.unowned_upgrades = []
+        for entry in self.j_unowned_upgrades:
+            self.unowned_upgrades.append(Upgrade(**entry))
+        self.available_upgrades = []
+        self.owned_upgrades = []
         # Stores the complete PLAYER object for backup and stats screen
         self.stats = {'balance': self.balance,
                       'earned': self.earned,
@@ -342,7 +363,8 @@ class Player:
                       'building count': self.building_ct,
                       'click strength': self.click_str,
                       'handmade': self.handmade,
-                      'inventory': self.inventory}
+                      'inventory': self.inventory,
+                      'upgrades': self.owned_upgrades}
 
     def cps_update(self, game_tick=0):
         """
@@ -367,6 +389,15 @@ class Player:
             total += building.count
         return total
 
+    def check_upg_cond(self):
+        for building in self.inventory:
+            for upgrade in self.unowned_upgrades:
+                if upgrade.target == building.name and building.count >= upgrade.condition:
+                    self.available_upgrades.append(upgrade)
+                    self.unowned_upgrades.remove(upgrade)
+
+        self.available_upgrades.sort(key=lambda upgrade: upgrade.current_price)
+
     def export_save(self):
         """
         Creates a save file with all of the information needed to reload the game
@@ -374,9 +405,12 @@ class Player:
         """
         print("Starting save...")
         self.j_inv = []
+        self.j_upg = []
         # The program will use this time to calculate the time passed for the sleep cookies to e calculated
         for entry in self.inventory:
             self.j_inv.append(vars(entry))
+        for entry in self.owned_upgrades:
+            self.j_upg.append(vars(entry))
         # Loads the stats dict to commit to the save
         # Stores the entire dict even though we don't need it to maintain the structure for the stats page
         self.stats = {'balance': self.balance,
@@ -388,7 +422,8 @@ class Player:
                       'building count': self.building_sum(),
                       'click_str': self.click_str,
                       'handmade': self.handmade,
-                      'inventory': self.j_inv}
+                      'inventory': self.j_inv,
+                      'upgrades': self.j_upg}
         # Opens the save file and writes the new save to it
         with open("CookieClone Save", "w", encoding="utf-8") as file:
             json.dump(self.stats, file, ensure_ascii=False, indent=2)
@@ -413,12 +448,18 @@ class Player:
         self.click_str = self.stats['click_str']
         self.handmade = self.stats['handmade']
         self.j_inv = self.stats['inventory']
+        self.j_upg = self.stats['upgrades']
 
         self.inventory = []
         for entry in self.j_inv:
             self.inventory.append(Building(**entry))
 
+        self.owned_upgrades = []
+        for entry in self.j_upg:
+            self.owned_upgrades.append(Upgrade(**entry))
+
         del self.j_inv
+        del self.j_upg
         # For every building...
         for i, building in enumerate(self.inventory):
             # Update the count lists
@@ -426,7 +467,7 @@ class Player:
             # Update the price lists
             GAME.price_list[i].config(text='$' + display_num(round(building.current_price)))
             # Create a tooltip rollover
-            GAME.create_tooltip(building.name, building, i)
+            GAME.create_building_tooltip(building.name, building, i)
 
         # Recalculate the cps and update the balances
         self.cps_update()
@@ -436,6 +477,10 @@ class Player:
 
         # Updates the cps label
         GAME.cps_show.config(text="Clicks per Second (cps): " + display_num(round(self.cps, 1)))
+
+        self.check_upg_cond()
+
+        GAME.create_upgrade_shop()
         print("Finished!")
 
 
@@ -453,7 +498,8 @@ class Thing:
 
 
 class Upgrade(Thing):
-    def __init__(self, name='', effect=0, target='', condition=0, current_price=0, description="", count=0):
+    def __init__(self, name='', effect=0, target='', condition=0,
+                 current_price=0, description="", count=0, kind='building'):
         """
         Creates an upgrade object
         :param name:
@@ -463,15 +509,18 @@ class Upgrade(Thing):
         :param current_price:
         :param description:
         :param count:
+        :param kind:
         """
         self.effect = effect
         self.target = target
         self.condition = condition
         self.description = description
+        self.kind = kind
         super().__init__(name, current_price, count)
 
     def __str__(self):
-        return "Name: " + self.name + "\t\t\tEffect: " + str(self.effect) + "\t\t\tPrice: " + str(self.current_price)
+        return "Name: " + self.name + "\t\t\tEffect: " + str(self.effect) + \
+               "\t\t\tPrice: " + str(self.current_price)
 
 
 class Building(Thing):

@@ -51,31 +51,33 @@ building_upgrades = []
 for table in filled_tables[:-13]:
     for i, row in enumerate(table):
         if i > 0:
+            effect = row[4]
+            price = row[3]
+            target = table[0][0]
             # if "twice" in the effect, change it to 2x
-            if 'twice' in row[4]:
-                row[4] = 2
+            if 'twice' in effect:
+                effect = 2
             # if "+" in the effect, pull out the number
-            elif '+' in row[4]:
-                row[4] = float_extract(row[4])
+            elif '+' in effect:
+                effect = float_extract(row[4])
 
             # if the price is a string, extract the number it means
-            if type(row[3]) == str:
-                row[3] = undisplay_num(row[3])
+            if type(price) == str:
+                price = undisplay_num(price)
 
-            # If the
-            if 'Cursor' in table[0][0]:
-                table[0][0] = 'auto clicker'
-            elif 'upgrades' in table[0][0]:
-                table[0][0] = table[0][0].lower().replace('upgrades', '').strip()
+            if 'Cursor' in target:
+                target = 'auto clicker'
+            elif 'upgrades' in target:
+                target = target.lower().replace('upgrades', '').strip()
 
             if type(row[2]) == str:
                 row[2] = int(float_extract(row[2]))
 
-            building_upgrades.append(Upgrade(row[1], row[4], table[0][0], row[2], row[3], 0))
+            building_upgrades.append(Upgrade(row[1], effect, target, row[2], price, row[4], 0, 'building'))
 
 upgrade_list_json = []
 for entry in building_upgrades:
     upgrade_list_json.append(vars(entry))
 
-with open('UpgradeJSON.json', 'w') as file:
+with open('Upgrades.json', 'w') as file:
     json.dump(upgrade_list_json, file, indent=2)
