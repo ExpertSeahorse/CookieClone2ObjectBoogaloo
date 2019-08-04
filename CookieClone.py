@@ -499,7 +499,7 @@ class Thing:
 
 class Upgrade(Thing):
     def __init__(self, name='', effect=0, target='', condition=0,
-                 current_price=0, description="", count=0, kind='building'):
+                 current_price=0, description="", count=0, kind='building', identification=-1):
         """
         Creates an upgrade object
         :param name:
@@ -516,6 +516,7 @@ class Upgrade(Thing):
         self.condition = condition
         self.description = description
         self.kind = kind
+        self.identification = identification
         super().__init__(name, current_price, count)
 
     def __str__(self):
