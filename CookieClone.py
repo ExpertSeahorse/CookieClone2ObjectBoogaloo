@@ -4,8 +4,6 @@ from time import time
 from os import path
 from Packages import time_delta_display, display_num
 from TkinterPackages import CreateToolTip
-# TODO: Make buttons disappear until the player can afford them
-# TODO: Add upgrades buy function
 # TODO: Figure out and implement how to add the special cursor effects
 # TODO: Add non-building upgrades
 
@@ -15,6 +13,7 @@ from TkinterPackages import CreateToolTip
 # TODO: Investment Bank
 
 
+# noinspection PyUnboundLocalVariable
 class GameWindow:
     """
     Displays the information from the Player object
@@ -129,8 +128,8 @@ class GameWindow:
             r = i + 2
 
             # makes price labels
-            price_name = tk.Label(self.frame_shop, width=20,
-                                  text='$' + display_num(round(self.current_price_calculator(building.base_price, building.count))))
+            p = self.current_price_calculator(building.base_price, building.count)
+            price_name = tk.Label(self.frame_shop, width=20, text='$' + display_num(round(p)))
             price_name.grid(row=r)
             self.price_list.append(price_name)
 
@@ -175,8 +174,8 @@ class GameWindow:
 
         # Creates the tooltip
         CreateToolTip(self.button_lst[index],
-                      "--Each " + label + " produces " + display_num(building.cps * building.upgrade_mult) + " cookies per second\n" +
-                      "--" + display_num(building.count) + " " + label + "s producing " +
+                      "--Each " + label + " produces " + display_num(building.cps * building.upgrade_mult) +
+                      " cookies per second\n" + "--" + display_num(building.count) + " " + label + "s producing " +
                       display_num(build_cps) + " cookies per second (" + build_cps_ratio + "%)")
 
     def ck_click(self):
@@ -235,6 +234,8 @@ class GameWindow:
             for item in PLAYER.inventory:
                 if item.name == upgrade.target:
                     building = item
+                else:
+                    print("Upgrade creation error, target/name match not found")
 
             if upgrade.effect == 2:
                 building.upgrade_mult *= 2
@@ -320,7 +321,7 @@ class GameWindow:
 ########################################################################################################################
 
 
-# noinspection PyUnresolvedReferences
+# noinspection PyUnresolvedReferences,PyTypeChecker
 class Player:
     """
     Handles all components of the game related to what the player owns
@@ -354,6 +355,8 @@ class Player:
         # Stores the buildings, their count, their cps, and their price
         self.inventory = []
         self.j_inv = []
+        self.j_upg = []
+        # Converts above list into Building objects
         for entry in self.building_list:
             self.inventory.append(Building(*entry, 0, 1, entry[2]))
         # Initializes the cookies per second (cps)
@@ -368,9 +371,11 @@ class Player:
         self.click_str = 1
         # Stores the number of clicked cookies
         self.handmade = 0
+        # imports the dict style upgrades into a dict
         with open('Upgrades.json') as fin:
             self.j_unowned_upgrades = json.load(fin)
-            self.unowned_upgrades = []
+        self.unowned_upgrades = []
+        # Puts the upgrades into a list and converts them to Upgrade objects
         for entry in self.j_unowned_upgrades:
             self.unowned_upgrades.append(Upgrade(**entry))
         self.available_upgrades = []
@@ -418,7 +423,7 @@ class Player:
                     self.available_upgrades.append(upgrade)
                     self.unowned_upgrades.remove(upgrade)
 
-        self.available_upgrades.sort(key=lambda upgrade: upgrade.current_price)
+        self.available_upgrades.sort(key=lambda price: upgrade.current_price)
 
     def export_save(self):
         """
