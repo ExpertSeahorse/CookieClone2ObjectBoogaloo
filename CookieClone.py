@@ -150,7 +150,9 @@ class GameWindow:
     def create_upgrade_shop(self):
         PLAYER.check_upg_cond()
         for i, upgrade in enumerate(PLAYER.available_upgrades[:6]):
-            self.button = tk.Button(self.frame_upgrade, width=12, text=upgrade.name, command=self.buy_upgrade)
+            self.button = tk.Button(self.frame_upgrade, width=12, text=upgrade.name,
+                                    command=lambda j=i: self.buy_upgrade(j))
+            print(i, upgrade.identification)
             self.button.grid(row=1, column=i, rowspan=2)
 
     def create_building_tooltip(self, name, building, index):
@@ -223,8 +225,28 @@ class GameWindow:
             for i, entry in enumerate(PLAYER.inventory):
                 self.create_building_tooltip(entry.name, entry, i)
 
-    def buy_upgrade(self):
-        pass
+    def buy_upgrade(self, choice):
+        print(choice)
+        upgrade = PLAYER.available_upgrades[choice]
+        if PLAYER.balance >= upgrade.current_price:
+            PLAYER.balance -= upgrade.current_price
+            PLAYER.owned_upgrades.append(upgrade)
+            PLAYER.available_upgrades.remove(upgrade)
+            for item in PLAYER.inventory:
+                if item.name == upgrade.target:
+                    building = item
+
+            if upgrade.effect == 2:
+                building.upgrade_mult *= 2
+            else:
+                # Use logic for cursor upgrades here :)
+                # Need to use building_ct in some way
+                pass
+            self.bal_show.config(text="Balance: " + display_num(round(PLAYER.balance)))
+            PLAYER.cps_update()
+            self.cps_show.config(text="Clicks per Second (cps): " + display_num(round(PLAYER.cps, 1)))
+
+            self.create_upgrade_shop()
 
     def game_tick(self):
         """
@@ -377,11 +399,11 @@ class Player:
             # If the calculation isn't for the game logic...
             if not game_tick:
                 # the cps is the sum of the number of buildings multiplied by their cps value
-                self.cps += building.count * building.cps
+                self.cps += building.count * building.cps * building.upgrade_mult
             # if the calculation is for the actual game logic...
             elif game_tick == 1:
                 # the cps of each building is 1/100 the advertised value b/c the game tick happens every 1/100 seconds
-                self.cps += building.count * (building.cps/100)
+                self.cps += building.count * (building.cps/100) * building.upgrade_mult
 
     def building_sum(self):
         total = 0

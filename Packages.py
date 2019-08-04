@@ -243,8 +243,10 @@ def float_extract(s):
             # If the sentence ended with the number, remove the last period
             if char == ' ' and s[i-1] == '.':
                 l.pop()
+            if char == ' ' and s[i+1:i+8] == 'million':
+                l.append(' million')
     # Return the float of the collected digits put together
-    return float(''.join(l))
+    return undisplay_num(''.join(l))
 
 
 def send_sms(message, number='813-352-2669', carrier='verizon'):
