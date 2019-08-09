@@ -183,9 +183,10 @@ class GameWindow:
         If the player clicks the cookie, add a cookie and update the balance
         :return:
         """
-        PLAYER.balance += 1
-        PLAYER.earned += 1
-        PLAYER.handmade += 1
+        click_str = PLAYER.click_str
+        PLAYER.balance += click_str
+        PLAYER.earned += click_str
+        PLAYER.handmade += click_str
         self.bal_show.config(text="Balance: " + str(display_num(round(PLAYER.balance))))
 
     def buy_building(self, choice):
